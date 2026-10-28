@@ -1,6 +1,6 @@
 /* ============================================================
-   ST PAUL METHODIST SCHOOL TIMOR-LESTE — MAIN STYLESHEET
-   Professional school website + portal dashboard
+   ST PAUL METHODIST SCHOOL TIMOR-LESTE — STYLESHEET
+   Complete, professional, responsive
    ============================================================ */
 
 :root {
@@ -43,8 +43,8 @@
 }
 
 /* ---------- RESET ---------- */
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
     font-family: var(--font-primary);
     background: var(--bg);
@@ -53,22 +53,43 @@ body {
     font-size: 15px;
     -webkit-font-smoothing: antialiased;
 }
-a { text-decoration:none; color:inherit; transition: var(--transition); }
-img { max-width:100%; display:block; }
-ul { list-style:none; }
+a { text-decoration: none; color: inherit; transition: var(--transition); }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
 button { font-family: var(--font-primary); cursor: pointer; }
-h1,h2,h3,h4 { font-weight:700; color:var(--primary); line-height:1.3; }
-h1 { font-size:1.5rem; }
-h2 { font-size:1.6rem; font-family:var(--font-heading); }
-h3 { font-size:1.05rem; }
-h4 { font-size:0.95rem; }
+h1, h2, h3, h4 { font-weight: 700; color: var(--primary); line-height: 1.3; }
+h1 { font-size: 1.5rem; }
+h2 { font-size: 1.6rem; font-family: var(--font-heading); }
+h3 { font-size: 1.05rem; }
+h4 { font-size: 0.95rem; }
+
+/* Image fallback */
+.img-fallback {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    position: relative;
+}
+.img-fallback::after {
+    content: "\f03e";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: rgba(255,255,255,0.4);
+    font-size: 2rem;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+.img-fallback img { display: none; }
 
 /* ============================================================
    AUTH STATE
    ============================================================ */
 body:not(.logged-in) .sidebar,
 body:not(.logged-in) .main-wrapper { display: none; }
-body.logged-in .login-screen        { display: none; }
+body.logged-in .login-screen { display: none; }
 
 /* ============================================================
    TOAST
@@ -105,10 +126,10 @@ body.logged-in .login-screen        { display: none; }
 .toast-success i { color: var(--success); }
 .toast-warning { border-left-color: var(--warning); }
 .toast-warning i { color: var(--warning); }
-.toast-error   { border-left-color: var(--danger); }
+.toast-error { border-left-color: var(--danger); }
 .toast-error i { color: var(--danger); }
-.toast-info    { border-left-color: var(--info); }
-.toast-info i  { color: var(--info); }
+.toast-info { border-left-color: var(--info); }
+.toast-info i { color: var(--info); }
 
 /* ============================================================
    MODAL
@@ -138,19 +159,18 @@ body.logged-in .login-screen        { display: none; }
 }
 @keyframes modalIn {
     from { transform: scale(0.94); opacity: 0; }
-    to   { transform: scale(1);    opacity: 1; }
+    to { transform: scale(1); opacity: 1; }
 }
 .modal-close {
     position: absolute;
     top: 14px; right: 14px;
     width: 36px; height: 36px;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.95);
     border: none;
     border-radius: 50%;
     font-size: 22px;
     line-height: 1;
     color: var(--primary);
-    cursor: pointer;
     z-index: 10;
     box-shadow: var(--shadow-md);
     transition: var(--transition);
@@ -160,7 +180,7 @@ body.logged-in .login-screen        { display: none; }
 .modal-content h2 { font-size: 1.4rem; margin-bottom: 12px; }
 .modal-content p { color: var(--text); margin-bottom: 12px; }
 .modal-content .modal-sub { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; }
-.modal-news-image { position: relative; height: 220px; overflow: hidden; }
+.modal-news-image { position: relative; height: 220px; overflow: hidden; background: var(--primary); }
 .modal-news-image img { width: 100%; height: 100%; object-fit: cover; }
 .modal-cat {
     position: absolute;
@@ -200,11 +220,12 @@ body.logged-in .login-screen        { display: none; }
     border-color: var(--secondary);
     box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
 }
-.modal-content > .note-box { margin: 0 28px 28px; }
 .modal-content > h2,
 .modal-content > p.modal-sub,
-.modal-content > form { padding: 0 28px; }
+.modal-content > form,
+.modal-content > .note-box { padding-left: 28px; padding-right: 28px; }
 .modal-content > h2 { padding-top: 28px; }
+.modal-content > .note-box { margin-bottom: 28px; }
 
 /* ============================================================
    LIGHTBOX
@@ -235,7 +256,6 @@ body.logged-in .login-screen        { display: none; }
     border-radius: 50%;
     font-size: 26px;
     color: #fff;
-    cursor: pointer;
     transition: var(--transition);
 }
 .lightbox-close:hover { background: var(--danger); transform: rotate(90deg); }
@@ -249,7 +269,6 @@ body.logged-in .login-screen        { display: none; }
     border-radius: 50%;
     color: #fff;
     font-size: 20px;
-    cursor: pointer;
     transition: var(--transition);
 }
 .lightbox-nav:hover { background: var(--secondary); }
@@ -393,7 +412,6 @@ body.logged-in .login-screen        { display: none; }
     border-radius: 20px;
     font-size: 0.78rem;
     color: var(--text);
-    cursor: pointer;
     transition: var(--transition);
 }
 .recent-chip:hover { border-color: var(--secondary); background: #fff; }
@@ -534,7 +552,7 @@ body.logged-in .login-screen        { display: none; }
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 20px 20px;
+    padding: 20px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .sidebar-logo-box {
@@ -777,7 +795,7 @@ body.logged-in .login-screen        { display: none; }
 .page-section.active { display: block; }
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .section-header { margin-bottom: 24px; }
@@ -813,21 +831,16 @@ body.logged-in .login-screen        { display: none; }
 .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
 .btn-gold { background: var(--secondary); color: #fff; }
 .btn-gold:hover { background: var(--secondary-dark); transform: translateY(-1px); }
-.btn-outline-light {
-    background: transparent;
-    color: #fff;
-    border: 2px solid rgba(255,255,255,0.6);
-}
+.btn-outline-light { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.6); }
 .btn-outline-light:hover { background: #fff; color: var(--primary); }
 .btn-block { width: 100%; }
 
 /* ============================================================
-   HERO BANNER
+   HERO
    ============================================================ */
 .hero-banner {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
-    gap: 0;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
     border-radius: var(--radius-lg);
     overflow: hidden;
@@ -867,16 +880,8 @@ body.logged-in .login-screen        { display: none; }
     max-width: 500px;
 }
 .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
-.hero-image {
-    position: relative;
-    overflow: hidden;
-}
-.hero-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    min-height: 320px;
-}
+.hero-image { position: relative; overflow: hidden; background: var(--primary-dark); }
+.hero-image img { width: 100%; height: 100%; object-fit: cover; min-height: 320px; }
 
 /* ============================================================
    STATS
@@ -997,12 +1002,14 @@ body.logged-in .login-screen        { display: none; }
     display: flex;
     gap: 12px;
     align-items: flex-start;
-    padding: 12px 0;
+    padding: 12px 8px;
+    margin: 0 -8px;
     border-bottom: 1px solid var(--gray);
+    border-radius: 6px;
     transition: var(--transition);
 }
 .announcement-row:last-child { border-bottom: none; }
-.announcement-row.clickable { cursor: pointer; border-radius: 6px; padding: 12px 8px; margin: 0 -8px; }
+.announcement-row.clickable { cursor: pointer; }
 .announcement-row.clickable:hover { background: var(--bg-soft); }
 .announcement-dot {
     width: 8px; height: 8px;
@@ -1021,13 +1028,8 @@ body.logged-in .login-screen        { display: none; }
    EVENTS
    ============================================================ */
 .event-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.event-row { display: flex; gap: 12px; align-items: center; }
-.event-row.clickable {
-    padding: 8px;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    transition: var(--transition);
-}
+.event-row { display: flex; gap: 12px; align-items: center; padding: 8px; border-radius: var(--radius-sm); transition: var(--transition); }
+.event-row.clickable { cursor: pointer; }
 .event-row.clickable:hover { background: var(--bg-soft); transform: translateX(2px); }
 .event-date-box {
     background: var(--primary);
@@ -1053,12 +1055,8 @@ body.logged-in .login-screen        { display: none; }
 .event-meta i { color: var(--secondary); margin-right: 3px; }
 
 .event-cards-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-.event-card {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    cursor: pointer;
-}
+.event-card { display: flex; gap: 20px; align-items: flex-start; }
+.event-card.clickable { cursor: pointer; }
 .event-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .event-date-large {
     background: var(--primary);
@@ -1107,6 +1105,7 @@ body.logged-in .login-screen        { display: none; }
     margin-bottom: 24px;
     box-shadow: var(--shadow-md);
     max-height: 320px;
+    background: var(--primary);
 }
 .about-hero img { width: 100%; height: 320px; object-fit: cover; }
 
@@ -1136,6 +1135,7 @@ body.logged-in .login-screen        { display: none; }
     object-fit: cover;
     margin: 0 auto 14px;
     border: 3px solid var(--secondary);
+    background: var(--primary);
 }
 .leader-card h4 { margin-bottom: 2px; }
 .leader-card span { font-size: 0.8rem; color: var(--secondary); font-weight: 500; display: block; margin-bottom: 8px; }
@@ -1145,7 +1145,7 @@ body.logged-in .login-screen        { display: none; }
    PROGRAM CARDS
    ============================================================ */
 .program-card { padding: 0; overflow: hidden; }
-.program-image { position: relative; height: 180px; overflow: hidden; }
+.program-image { position: relative; height: 180px; overflow: hidden; background: var(--primary); }
 .program-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
 .program-card:hover .program-image img { transform: scale(1.05); }
 .program-badge {
@@ -1235,12 +1235,7 @@ body.logged-in .login-screen        { display: none; }
 /* ============================================================
    NEWS
    ============================================================ */
-.filter-bar {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
+.filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
 .filter-btn {
     background: #fff;
     border: 1.5px solid var(--gray);
@@ -1266,7 +1261,7 @@ body.logged-in .login-screen        { display: none; }
 }
 .news-card.clickable { cursor: pointer; }
 .news-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-.news-image { position: relative; height: 180px; overflow: hidden; }
+.news-image { position: relative; height: 180px; overflow: hidden; background: var(--primary); }
 .news-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
 .news-card:hover .news-image img { transform: scale(1.05); }
 .news-cat {
@@ -1301,12 +1296,9 @@ body.logged-in .login-screen        { display: none; }
     overflow: hidden;
     cursor: pointer;
     position: relative;
+    background: var(--primary);
 }
-.gallery-item img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-}
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
 .gallery-item:hover img { transform: scale(1.08); }
 .gallery-overlay {
     position: absolute;
@@ -1336,6 +1328,7 @@ body.logged-in .login-screen        { display: none; }
     object-fit: cover;
     margin: 0 auto 14px;
     border: 3px solid var(--secondary);
+    background: var(--primary);
     transition: transform 0.3s ease;
 }
 .faculty-card:hover .faculty-photo { transform: scale(1.05); }
@@ -1391,3 +1384,119 @@ body.logged-in .login-screen        { display: none; }
     background: #fff;
 }
 .form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+}
+.form-group textarea { resize: vertical; min-height: 90px; }
+
+.map-placeholder {
+    height: 240px;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--text-muted);
+    text-align: center;
+}
+.map-placeholder i { font-size: 40px; color: var(--secondary); }
+.map-placeholder strong { color: var(--primary); }
+
+/* ============================================================
+   FOOTER + UTILITIES
+   ============================================================ */
+.page-footer {
+    padding: 20px;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--gray);
+    margin-top: 20px;
+}
+
+.text-center { text-align: center; }
+.muted { color: var(--text-muted); }
+.mt-20 { margin-top: 20px; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1100px) {
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: 1fr 1fr; }
+    .quick-links { grid-template-columns: repeat(2, 1fr); }
+    .values-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps-grid { grid-template-columns: repeat(3, 1fr); }
+    .faculty-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    .event-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 900px) {
+    .login-screen { flex-direction: column; }
+    .login-left { padding: 32px 24px; min-height: auto; }
+    .login-brand { margin-bottom: 24px; }
+    .login-tagline { margin-bottom: 24px; }
+    .login-tagline h2 { font-size: 1.4rem; }
+    .login-features { display: none; }
+    .login-copyright { margin-top: 24px; }
+    .login-right { padding: 32px 16px; }
+    .login-box { padding: 32px 24px; }
+
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.open { transform: translateX(0); }
+    .main-wrapper { margin-left: 0; }
+    .sidebar-toggle { display: block; }
+    .header-title h1 { font-size: 1rem; }
+    .header-user-info { display: none; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: 1fr; }
+    .leader-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .event-card { flex-direction: column; }
+    .event-date-large { width: 100%; }
+    .hero-banner { grid-template-columns: 1fr; }
+    .hero-content { padding: 28px 24px; }
+    .hero-content h2 { font-size: 1.5rem; }
+    .hero-image { min-height: 220px; }
+    .hero-image img { min-height: 220px; }
+    .welcome-banner { padding: 22px; }
+    .content { padding: 16px; }
+    .notif-panel { width: 280px; right: -40px; }
+}
+
+@media (max-width: 600px) {
+    .stats-row { grid-template-columns: 1fr; }
+    .quick-links { grid-template-columns: 1fr 1fr; }
+    .values-grid { grid-template-columns: 1fr 1fr; }
+    .faculty-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .event-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .header-title h1 { font-size: 0.9rem; }
+    .top-header { padding: 0 12px; gap: 8px; }
+    .content { padding: 12px; }
+    .dash-card { padding: 16px; }
+    .login-box { padding: 24px 18px; }
+    .login-box-header h2 { font-size: 1.25rem; }
+    .login-portal-selector { gap: 4px; padding: 4px; }
+    .portal-tab { font-size: 0.7rem; padding: 8px 4px; }
+    .portal-tab i { font-size: 14px; }
+    .notif-panel { width: 260px; right: -60px; }
+    .modal-news-image { height: 180px; }
+    .modal-body { padding: 20px; }
+    .modal-content > h2,
+    .modal-content > p.modal-sub,
+    .modal-content > form,
+    .modal-content > .note-box { padding-left: 20px; padding-right: 20px; }
+    .modal-content > h2 { padding-top: 20px; }
+    .lightbox-nav { width: 42px; height: 42px; font-size: 16px; }
+    .lightbox-prev { left: 8px; }
+    .lightbox-next { right: 8px; }
+}
