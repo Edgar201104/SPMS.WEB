@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>St Paul Methodist School Timor-Leste | Portal</title>
-    <meta name="description" content="Official portal of St Paul Methodist School Timor-Leste - International school providing quality education from Elementary to High School.">
+    <title>St Paul Methodist School Timor-Leste | Official Portal</title>
+    <meta name="description" content="St Paul Methodist School Timor-Leste — Quality Christian education from Primary to Senior High School. Empowering students for a brighter future.">
     <meta property="og:title" content="St Paul Methodist School Timor-Leste">
     <meta property="og:description" content="Empowering Students for a Brighter Future">
     <meta property="og:type" content="website">
@@ -16,37 +16,59 @@
 </head>
 <body>
 
-    <!-- ============================================
+    <!-- ============================================================
+         TOAST CONTAINER (notifikasi kanan atas)
+    ============================================================ -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ============================================================
+         MODAL CONTAINER (untuk detail berita, event, forgot password)
+    ============================================================ -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-box" id="modalBox">
+            <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+            <div class="modal-content" id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         LIGHTBOX (untuk galeri)
+    ============================================================ -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lbClose">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lbPrev"><i class="fas fa-chevron-left"></i></button>
+        <img class="lightbox-img" id="lbImg" src="" alt="Gallery Image">
+        <button class="lightbox-nav lightbox-next" id="lbNext"><i class="fas fa-chevron-right"></i></button>
+        <div class="lightbox-caption" id="lbCaption"></div>
+    </div>
+
+    <!-- ============================================================
          LOGIN SCREEN
-    ============================================ -->
+    ============================================================ -->
     <div class="login-screen" id="loginScreen">
-        <!-- Left: Branding Panel -->
         <div class="login-left">
             <div class="login-decoration"></div>
             <div class="login-left-content">
                 <div class="login-brand">
-                    <img src="images/logo.png" alt="SPMSTL Logo" class="login-logo" onerror="this.style.display='none'">
+                    <div class="login-logo-box"><i class="fas fa-graduation-cap"></i></div>
                     <div class="login-brand-text">
                         <span class="login-brand-main">St Paul Methodist School</span>
                         <span class="login-brand-sub">Timor-Leste</span>
                     </div>
                 </div>
-
                 <div class="login-tagline">
                     <h2>Empowering Students for a Brighter Future</h2>
                     <p>Sign in to access your dashboard, schedules, assignments, and stay connected with the school community.</p>
                 </div>
-
                 <ul class="login-features">
                     <li><i class="fas fa-check-circle"></i> Access your academic schedule</li>
-                    <li><i class="fas fa-check-circle"></i> Track assignments & grades</li>
+                    <li><i class="fas fa-check-circle"></i> Track assignments &amp; grades</li>
                     <li><i class="fas fa-check-circle"></i> Stay updated with announcements</li>
                 </ul>
             </div>
             <p class="login-copyright">© 2026 St Paul Methodist School Timor-Leste</p>
         </div>
 
-        <!-- Right: Login Form -->
         <div class="login-right">
             <div class="login-box">
                 <div class="login-box-header">
@@ -54,47 +76,49 @@
                     <p>Sign in to access your portal</p>
                 </div>
 
-                <!-- Portal Selector -->
+                <!-- Recent accounts (muncul jika sebelumnya pernah login) -->
+                <div class="recent-accounts" id="recentAccounts" style="display:none;">
+                    <span class="recent-label">Recent accounts:</span>
+                    <div class="recent-chips" id="recentChips"></div>
+                </div>
+
                 <div class="login-portal-selector" role="tablist">
                     <button type="button" class="portal-tab active" data-portal="student" role="tab">
-                        <i class="fas fa-user-graduate"></i>
-                        <span>Student</span>
+                        <i class="fas fa-user-graduate"></i><span>Student</span>
                     </button>
                     <button type="button" class="portal-tab" data-portal="parent" role="tab">
-                        <i class="fas fa-user-friends"></i>
-                        <span>Parent</span>
+                        <i class="fas fa-user-friends"></i><span>Parent</span>
                     </button>
                     <button type="button" class="portal-tab" data-portal="teacher" role="tab">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <span>Teacher</span>
+                        <i class="fas fa-chalkboard-teacher"></i><span>Teacher</span>
                     </button>
                 </div>
 
-                <!-- Form -->
-                <form class="login-form" id="loginForm" autocomplete="on">
+                <form class="login-form" id="loginForm" autocomplete="on" novalidate>
                     <div class="form-group">
                         <label for="loginUser">Student ID / Email</label>
-                        <input type="text" id="loginUser" name="username" required placeholder="Enter your student ID or email" autocomplete="username">
+                        <input type="text" id="loginUser" name="username" required
+                               placeholder="Enter your student ID or email"
+                               autocomplete="username">
                     </div>
-
                     <div class="form-group">
                         <label for="loginPass">Password</label>
                         <div class="password-wrapper">
-                            <input type="password" id="loginPass" name="password" required placeholder="Enter your password" autocomplete="current-password">
-                            <button type="button" class="toggle-password" id="togglePassword" aria-label="Toggle password visibility">
+                            <input type="password" id="loginPass" name="password" required
+                                   placeholder="Enter your password"
+                                   autocomplete="current-password">
+                            <button type="button" class="toggle-password" id="togglePassword" aria-label="Toggle password">
                                 <i class="fas fa-eye"></i>
                             </button>
                         </div>
                     </div>
-
                     <div class="login-options">
                         <label class="checkbox-label">
-                            <input type="checkbox" id="rememberMe">
+                            <input type="checkbox" id="rememberMe" checked>
                             <span>Remember Me</span>
                         </label>
-                        <a href="#" class="forgot-link" onclick="event.preventDefault(); alert('Please contact the school office to reset your password.');">Forgot Password?</a>
+                        <a href="#" class="forgot-link" id="forgotLink">Forgot Password?</a>
                     </div>
-
                     <button type="submit" class="btn btn-primary btn-block login-btn" id="loginBtn">
                         <i class="fas fa-sign-in-alt"></i> Sign In as Student
                     </button>
@@ -102,22 +126,18 @@
 
                 <div class="login-prototype-note">
                     <i class="fas fa-info-circle"></i>
-                    <span><strong>Prototype:</strong> Demo only — enter any ID and password to sign in.</span>
+                    <span><strong>Prototype:</strong> Enter any ID and password to sign in. Your session will be saved locally.</span>
                 </div>
-
-                <p class="login-help">
-                    Need help? Contact us at <strong>[School Email]</strong>
-                </p>
             </div>
         </div>
     </div>
 
-    <!-- ============================================
+    <!-- ============================================================
          SIDEBAR
-    ============================================ -->
+    ============================================================ -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-brand">
-            <img src="images/logo.png" alt="SPMSTL Logo" class="sidebar-logo" onerror="this.style.display='none'">
+            <div class="sidebar-logo-box"><i class="fas fa-graduation-cap"></i></div>
             <div class="sidebar-brand-text">
                 <span class="brand-main">SPMSTL</span>
                 <span class="brand-sub">School Portal</span>
@@ -140,9 +160,9 @@
             </a>
 
             <span class="nav-section-title">Community</span>
-            <a href="#news" class="nav-link" data-section="news" data-title="News & Announcements">
+            <a href="#news" class="nav-link" data-section="news" data-title="News &amp; Announcements">
                 <i class="fas fa-newspaper"></i><span>News</span>
-                <span class="nav-badge">3</span>
+                <span class="nav-badge" id="newsBadge">4</span>
             </a>
             <a href="#events" class="nav-link" data-section="events" data-title="School Events">
                 <i class="fas fa-calendar-alt"></i><span>Events</span>
@@ -155,7 +175,7 @@
             </a>
 
             <span class="nav-section-title">School</span>
-            <a href="#faculty" class="nav-link" data-section="faculty" data-title="Faculty & Staff">
+            <a href="#faculty" class="nav-link" data-section="faculty" data-title="Faculty &amp; Staff">
                 <i class="fas fa-chalkboard-teacher"></i><span>Faculty</span>
             </a>
             <a href="#contact" class="nav-link" data-section="contact" data-title="Contact Us">
@@ -165,51 +185,97 @@
 
         <div class="sidebar-footer">
             <button class="logout-btn" id="logoutBtn" type="button">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Sign Out</span>
+                <i class="fas fa-sign-out-alt"></i><span>Sign Out</span>
             </button>
         </div>
     </aside>
 
-    <!-- ============================================
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ============================================================
          MAIN WRAPPER
-    ============================================ -->
+    ============================================================ -->
     <div class="main-wrapper" id="mainWrapper">
 
-        <!-- Top Header -->
         <header class="top-header">
             <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
                 <i class="fas fa-bars"></i>
             </button>
-            <div class="header-title">
-                <h1 id="pageTitle">Dashboard</h1>
-            </div>
+            <div class="header-title"><h1 id="pageTitle">Dashboard</h1></div>
             <div class="header-right">
-                <div class="header-user">
+                <div class="notif-wrapper">
+                    <button class="header-icon-btn" id="notifBtn" aria-label="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-dot" id="notifDot"></span>
+                    </button>
+                    <div class="notif-panel" id="notifPanel">
+                        <div class="notif-panel-header">
+                            <span>Notifications</span>
+                            <button class="notif-clear" id="notifClear">Mark all read</button>
+                        </div>
+                        <div class="notif-list" id="notifList">
+                            <div class="notif-item unread">
+                                <i class="fas fa-bullhorn"></i>
+                                <div>
+                                    <strong>New announcement posted</strong>
+                                    <span>School Holiday — 15 Mar 2026</span>
+                                </div>
+                            </div>
+                            <div class="notif-item unread">
+                                <i class="fas fa-calendar-check"></i>
+                                <div>
+                                    <strong>Event reminder</strong>
+                                    <span>Parent-Teacher Conference — 25 Mar 2026</span>
+                                </div>
+                            </div>
+                            <div class="notif-item">
+                                <i class="fas fa-star"></i>
+                                <div>
+                                    <strong>Grades updated</strong>
+                                    <span>Mathematics — Chapter 4</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-user" id="headerUser">
                     <div class="header-avatar" id="headerAvatar">JS</div>
                     <div class="header-user-info">
-                        <span class="header-user-name" id="headerUserName">John Student</span>
+                        <span class="header-user-name" id="headerUserName">Student</span>
                         <span class="header-user-role" id="headerUserRole">Student</span>
                     </div>
                 </div>
             </div>
         </header>
 
-        <!-- Content -->
         <main class="content">
 
-            <!-- SECTION: DASHBOARD -->
+            <!-- ==================================================
+                 DASHBOARD
+            ================================================== -->
             <section id="dashboard" class="page-section active">
-                <div class="welcome-banner">
-                    <div class="welcome-text">
-                        <h2>Welcome to <span>St Paul Methodist School</span></h2>
-                        <p>Empowering Students for a Brighter Future</p>
+
+                <!-- Hero -->
+                <div class="hero-banner">
+                    <div class="hero-content">
+                        <span class="hero-tag">Welcome to SPMSTL</span>
+                        <h2>Empowering Students for a <span>Brighter Future</span></h2>
+                        <p>Quality Christian education from Primary to Senior High School, nurturing students to become responsible, compassionate, and globally-minded citizens.</p>
+                        <div class="hero-buttons">
+                            <a href="#admissions" class="btn btn-gold" data-goto="admissions">
+                                <i class="fas fa-user-plus"></i> Apply Now
+                            </a>
+                            <a href="#about" class="btn btn-outline-light" data-goto="about">
+                                <i class="fas fa-info-circle"></i> Learn More
+                            </a>
+                        </div>
                     </div>
-                    <div class="welcome-cta">
-                        <a href="#about" class="btn btn-primary" data-goto="about">Learn More</a>
+                    <div class="hero-image">
+                        <img src="https://picsum.photos/seed/spmstl-hero/900/600" alt="School Campus">
                     </div>
                 </div>
 
+                <!-- Stats -->
                 <div class="stats-row">
                     <div class="stat-card">
                         <div class="stat-icon blue"><i class="fas fa-user-graduate"></i></div>
@@ -226,10 +292,10 @@
                         </div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon green"><i class="fas fa-school"></i></div>
+                        <div class="stat-icon green"><i class="fas fa-layer-group"></i></div>
                         <div class="stat-info">
-                            <span class="stat-value">SD - SMA</span>
-                            <span class="stat-label">Grade Levels</span>
+                            <span class="stat-value">3</span>
+                            <span class="stat-label">School Levels</span>
                         </div>
                     </div>
                     <div class="stat-card">
@@ -241,31 +307,32 @@
                     </div>
                 </div>
 
+                <!-- Highlights + Announcements -->
                 <div class="grid-2">
                     <div class="dash-card">
                         <div class="card-header">
                             <h3><i class="fas fa-star"></i> School Highlights</h3>
                         </div>
-                        <div class="highlight-list">
-                            <div class="highlight-item">
-                                <div class="highlight-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
                                 <div>
                                     <h4>Quality Education</h4>
-                                    <p>[Add short description of educational quality]</p>
+                                    <p>Comprehensive curriculum from Primary to Senior High School.</p>
                                 </div>
                             </div>
-                            <div class="highlight-item">
-                                <div class="highlight-icon"><i class="fas fa-globe-asia"></i></div>
+                            <div class="feature-item">
+                                <div class="feature-icon"><i class="fas fa-globe-asia"></i></div>
                                 <div>
                                     <h4>International Community</h4>
-                                    <p>[Add short description of community]</p>
+                                    <p>Diverse learning environment with global perspective.</p>
                                 </div>
                             </div>
-                            <div class="highlight-item">
-                                <div class="highlight-icon"><i class="fas fa-heart"></i></div>
+                            <div class="feature-item">
+                                <div class="feature-icon"><i class="fas fa-heart"></i></div>
                                 <div>
                                     <h4>Values-Based Education</h4>
-                                    <p>[Add short description of values]</p>
+                                    <p>Christian values integrated into daily learning.</p>
                                 </div>
                             </div>
                         </div>
@@ -274,105 +341,123 @@
                     <div class="dash-card">
                         <div class="card-header">
                             <h3><i class="fas fa-bullhorn"></i> Latest Announcements</h3>
-                            <a href="#news" class="card-link" data-goto="news">View All</a>
+                            <a href="#news" class="card-link" data-goto="news">View All <i class="fas fa-arrow-right"></i></a>
                         </div>
                         <div class="announcement-list">
-                            <div class="announcement-row">
+                            <div class="announcement-row clickable" data-news="0">
                                 <div class="announcement-dot gold"></div>
                                 <div class="announcement-body">
-                                    <span class="announcement-title">[Announcement Title]</span>
-                                    <span class="announcement-meta">[Date]</span>
+                                    <span class="announcement-title">School Holiday Announcement</span>
+                                    <span class="announcement-meta">15 March 2026 · Announcements</span>
                                 </div>
                             </div>
-                            <div class="announcement-row">
+                            <div class="announcement-row clickable" data-news="1">
                                 <div class="announcement-dot blue"></div>
                                 <div class="announcement-body">
-                                    <span class="announcement-title">[Announcement Title]</span>
-                                    <span class="announcement-meta">[Date]</span>
+                                    <span class="announcement-title">Parent-Teacher Conference 2026</span>
+                                    <span class="announcement-meta">10 March 2026 · Academic</span>
                                 </div>
                             </div>
-                            <div class="announcement-row">
+                            <div class="announcement-row clickable" data-news="2">
                                 <div class="announcement-dot green"></div>
                                 <div class="announcement-body">
-                                    <span class="announcement-title">[Announcement Title]</span>
-                                    <span class="announcement-meta">[Date]</span>
+                                    <span class="announcement-title">Science Fair 2026 Registration Open</span>
+                                    <span class="announcement-meta">5 March 2026 · Student Activities</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Events -->
                 <div class="dash-card">
                     <div class="card-header">
                         <h3><i class="fas fa-calendar-check"></i> Upcoming Events</h3>
-                        <a href="#events" class="card-link" data-goto="events">View All</a>
+                        <a href="#events" class="card-link" data-goto="events">View All <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="event-grid">
-                        <div class="event-row">
-                            <div class="event-date-box"><span class="event-day">[Day]</span><span class="event-month">[Month]</span></div>
+                        <div class="event-row clickable" data-event="0">
+                            <div class="event-date-box"><span class="event-day">20</span><span class="event-month">Mar</span></div>
                             <div class="event-info">
-                                <span class="event-title">[Event Name]</span>
-                                <span class="event-meta"><i class="fas fa-map-marker-alt"></i> [Location]</span>
+                                <span class="event-title">National Holiday</span>
+                                <span class="event-meta"><i class="fas fa-map-marker-alt"></i> School Closed</span>
                             </div>
                         </div>
-                        <div class="event-row">
-                            <div class="event-date-box"><span class="event-day">[Day]</span><span class="event-month">[Month]</span></div>
+                        <div class="event-row clickable" data-event="1">
+                            <div class="event-date-box"><span class="event-day">25</span><span class="event-month">Mar</span></div>
                             <div class="event-info">
-                                <span class="event-title">[Event Name]</span>
-                                <span class="event-meta"><i class="fas fa-map-marker-alt"></i> [Location]</span>
+                                <span class="event-title">Parent-Teacher Conference</span>
+                                <span class="event-meta"><i class="fas fa-map-marker-alt"></i> School Hall</span>
                             </div>
                         </div>
-                        <div class="event-row">
-                            <div class="event-date-box"><span class="event-day">[Day]</span><span class="event-month">[Month]</span></div>
+                        <div class="event-row clickable" data-event="2">
+                            <div class="event-date-box"><span class="event-day">05</span><span class="event-month">Apr</span></div>
                             <div class="event-info">
-                                <span class="event-title">[Event Name]</span>
-                                <span class="event-meta"><i class="fas fa-map-marker-alt"></i> [Location]</span>
+                                <span class="event-title">Science Fair 2026</span>
+                                <span class="event-meta"><i class="fas fa-map-marker-alt"></i> Gymnasium</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Quick navigation -->
                 <div class="dash-card">
                     <div class="card-header">
                         <h3><i class="fas fa-link"></i> Quick Navigation</h3>
                     </div>
                     <div class="quick-links">
-                        <a href="#academics" class="quick-link" data-goto="academics"><i class="fas fa-graduation-cap"></i><span>Academics</span></a>
-                        <a href="#admissions" class="quick-link" data-goto="admissions"><i class="fas fa-user-plus"></i><span>Admissions</span></a>
-                        <a href="#gallery" class="quick-link" data-goto="gallery"><i class="fas fa-images"></i><span>Gallery</span></a>
-                        <a href="#faculty" class="quick-link" data-goto="faculty"><i class="fas fa-chalkboard-teacher"></i><span>Faculty</span></a>
+                        <a href="#academics" class="quick-link" data-goto="academics">
+                            <i class="fas fa-graduation-cap"></i><span>Academics</span>
+                        </a>
+                        <a href="#admissions" class="quick-link" data-goto="admissions">
+                            <i class="fas fa-user-plus"></i><span>Admissions</span>
+                        </a>
+                        <a href="#gallery" class="quick-link" data-goto="gallery">
+                            <i class="fas fa-images"></i><span>Gallery</span>
+                        </a>
+                        <a href="#faculty" class="quick-link" data-goto="faculty">
+                            <i class="fas fa-chalkboard-teacher"></i><span>Faculty</span>
+                        </a>
                     </div>
                 </div>
+
             </section>
 
-            <!-- SECTION: ABOUT -->
+            <!-- ==================================================
+                 ABOUT
+            ================================================== -->
             <section id="about" class="page-section">
                 <div class="section-header">
                     <span class="section-tag">About Us</span>
-                    <h2>School Overview</h2>
+                    <h2>St Paul Methodist School Timor-Leste</h2>
+                </div>
+
+                <div class="about-hero">
+                    <img src="https://picsum.photos/seed/spmstl-campus/1200/500" alt="School Campus">
                 </div>
 
                 <div class="grid-2">
                     <div class="dash-card">
                         <h3 class="card-title">Who We Are</h3>
-                        <p>[Add school overview text here]</p>
-                        <p>[Add more detailed information about the school's history, founding, and mission.]</p>
+                        <p>St Paul Methodist School Timor-Leste is a Christian educational institution providing quality education from <strong>Primary School</strong> through <strong>Senior High School</strong>. We are committed to nurturing the whole child — academically, spiritually, socially, and emotionally.</p>
+                        <p>Our school community welcomes students from diverse backgrounds, united by a shared commitment to excellence, integrity, and service.</p>
+                        <p class="note-box"><i class="fas fa-info-circle"></i> [Add more detailed information about the school's history, founding, and mission.]</p>
                     </div>
                     <div class="dash-card">
                         <h3 class="card-title">Our Vision</h3>
-                        <p>[Add vision statement here]</p>
-                        <h3 class="card-title" style="margin-top: 20px;">Our Mission</h3>
-                        <p>[Add mission statement here]</p>
+                        <p>To be a leading Christian school in Timor-Leste that develops globally-minded leaders with integrity, compassion, and excellence.</p>
+                        <h3 class="card-title" style="margin-top:20px;">Our Mission</h3>
+                        <p>To provide quality Christian education that nurtures the whole person, equipping students to become responsible citizens and lifelong learners.</p>
                     </div>
                 </div>
 
                 <div class="dash-card">
                     <div class="card-header"><h3><i class="fas fa-heart"></i> Core Values</h3></div>
                     <div class="values-grid">
-                        <div class="value-item"><i class="fas fa-cross"></i><h4>Faith</h4><p>[Add description]</p></div>
-                        <div class="value-item"><i class="fas fa-star"></i><h4>Excellence</h4><p>[Add description]</p></div>
-                        <div class="value-item"><i class="fas fa-handshake"></i><h4>Integrity</h4><p>[Add description]</p></div>
-                        <div class="value-item"><i class="fas fa-users"></i><h4>Community</h4><p>[Add description]</p></div>
+                        <div class="value-item"><i class="fas fa-cross"></i><h4>Faith</h4><p>Rooted in Christian principles.</p></div>
+                        <div class="value-item"><i class="fas fa-star"></i><h4>Excellence</h4><p>Striving for the highest standards.</p></div>
+                        <div class="value-item"><i class="fas fa-handshake"></i><h4>Integrity</h4><p>Honesty and accountability in all things.</p></div>
+                        <div class="value-item"><i class="fas fa-users"></i><h4>Community</h4><p>Supporting one another with care.</p></div>
                     </div>
                 </div>
 
@@ -380,22 +465,24 @@
                     <div class="card-header"><h3><i class="fas fa-user-tie"></i> School Leadership</h3></div>
                     <div class="leader-grid">
                         <div class="leader-card">
-                            <div class="leader-avatar">[PN]</div>
+                            <img class="leader-photo" src="https://picsum.photos/seed/principal1/200/200" alt="Principal">
                             <h4>[Principal Name]</h4>
                             <span>School Principal</span>
-                            <p>[Add principal biography]</p>
+                            <p>[Add principal biography and qualifications here]</p>
                         </div>
                         <div class="leader-card">
-                            <div class="leader-avatar">[VN]</div>
+                            <img class="leader-photo" src="https://picsum.photos/seed/viceprincipal1/200/200" alt="Vice Principal">
                             <h4>[Vice Principal Name]</h4>
                             <span>Vice Principal</span>
-                            <p>[Add vice principal biography]</p>
+                            <p>[Add vice principal biography and qualifications here]</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- SECTION: ACADEMICS -->
+            <!-- ==================================================
+                 ACADEMICS
+            ================================================== -->
             <section id="academics" class="page-section">
                 <div class="section-header">
                     <span class="section-tag">Academics</span>
@@ -404,59 +491,76 @@
 
                 <div class="grid-3">
                     <div class="dash-card program-card">
-                        <div class="program-icon"><i class="fas fa-child"></i></div>
-                        <h3>Elementary School (SD)</h3>
-                        <p class="program-age">Grades 1 - 6</p>
-                        <p>[Add description of Elementary School program]</p>
-                        <ul class="program-list">
-                            <li><i class="fas fa-check"></i> [Subject 1]</li>
-                            <li><i class="fas fa-check"></i> [Subject 2]</li>
-                            <li><i class="fas fa-check"></i> [Subject 3]</li>
-                        </ul>
+                        <div class="program-image">
+                            <img src="https://picsum.photos/seed/spmstl-primary/500/300" alt="Primary School">
+                            <span class="program-badge">Grades 1 - 6</span>
+                        </div>
+                        <div class="program-content">
+                            <h3>Primary School</h3>
+                            <p>Building strong foundations in literacy, numeracy, and character through engaging and child-centered learning.</p>
+                            <ul class="program-list">
+                                <li><i class="fas fa-check"></i> English Language Arts</li>
+                                <li><i class="fas fa-check"></i> Mathematics</li>
+                                <li><i class="fas fa-check"></i> Science &amp; Social Studies</li>
+                                <li><i class="fas fa-check"></i> Arts &amp; Physical Education</li>
+                            </ul>
+                        </div>
                     </div>
+
                     <div class="dash-card program-card">
-                        <div class="program-icon"><i class="fas fa-book-open"></i></div>
-                        <h3>Junior High School (SMP)</h3>
-                        <p class="program-age">Grades 7 - 9</p>
-                        <p>[Add description of Junior High School program]</p>
-                        <ul class="program-list">
-                            <li><i class="fas fa-check"></i> [Subject 1]</li>
-                            <li><i class="fas fa-check"></i> [Subject 2]</li>
-                            <li><i class="fas fa-check"></i> [Subject 3]</li>
-                        </ul>
+                        <div class="program-image">
+                            <img src="https://picsum.photos/seed/spmstl-junior/500/300" alt="Junior High School">
+                            <span class="program-badge">Grades 7 - 9</span>
+                        </div>
+                        <div class="program-content">
+                            <h3>Junior High School</h3>
+                            <p>Developing critical thinking, academic discipline, and personal responsibility in preparation for Senior High.</p>
+                            <ul class="program-list">
+                                <li><i class="fas fa-check"></i> Advanced Mathematics</li>
+                                <li><i class="fas fa-check"></i> Sciences (Physics, Chemistry, Biology)</li>
+                                <li><i class="fas fa-check"></i> Languages (English, Portuguese, Tetum)</li>
+                                <li><i class="fas fa-check"></i> Social Studies &amp; Civics</li>
+                            </ul>
+                        </div>
                     </div>
+
                     <div class="dash-card program-card">
-                        <div class="program-icon"><i class="fas fa-user-graduate"></i></div>
-                        <h3>Senior High School (SMA)</h3>
-                        <p class="program-age">Grades 10 - 12</p>
-                        <p>[Add description of Senior High School program]</p>
-                        <ul class="program-list">
-                            <li><i class="fas fa-check"></i> [Subject 1]</li>
-                            <li><i class="fas fa-check"></i> [Subject 2]</li>
-                            <li><i class="fas fa-check"></i> [Subject 3]</li>
-                        </ul>
+                        <div class="program-image">
+                            <img src="https://picsum.photos/seed/spmstl-senior/500/300" alt="Senior High School">
+                            <span class="program-badge">Grades 10 - 12</span>
+                        </div>
+                        <div class="program-content">
+                            <h3>Senior High School</h3>
+                            <p>Preparing students for university, career, and life through rigorous academics and leadership development.</p>
+                            <ul class="program-list">
+                                <li><i class="fas fa-check"></i> Science Track (IPA)</li>
+                                <li><i class="fas fa-check"></i> Social Studies Track (IPS)</li>
+                                <li><i class="fas fa-check"></i> Language &amp; Literature</li>
+                                <li><i class="fas fa-check"></i> University Preparation</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <div class="dash-card">
-                    <div class="card-header"><h3><i class="fas fa-book"></i> Curriculum</h3></div>
+                    <div class="card-header"><h3><i class="fas fa-book"></i> Learning Approach</h3></div>
                     <div class="grid-2">
                         <div>
                             <h4 class="sub-title">Core Subjects</h4>
                             <ul class="simple-list">
-                                <li>English Language Arts</li>
-                                <li>Mathematics</li>
-                                <li>Science</li>
-                                <li>Social Studies</li>
+                                <li><i class="fas fa-check"></i> English Language Arts</li>
+                                <li><i class="fas fa-check"></i> Mathematics</li>
+                                <li><i class="fas fa-check"></i> Science</li>
+                                <li><i class="fas fa-check"></i> Social Studies</li>
                             </ul>
                         </div>
                         <div>
-                            <h4 class="sub-title">Enrichment</h4>
+                            <h4 class="sub-title">Enrichment Programs</h4>
                             <ul class="simple-list">
-                                <li>Visual Arts</li>
-                                <li>Music & Drama</li>
-                                <li>Physical Education</li>
-                                <li>Languages (Portuguese, Tetum)</li>
+                                <li><i class="fas fa-check"></i> Visual &amp; Performing Arts</li>
+                                <li><i class="fas fa-check"></i> Music &amp; Drama</li>
+                                <li><i class="fas fa-check"></i> Physical Education</li>
+                                <li><i class="fas fa-check"></i> Languages (Portuguese, Tetum)</li>
                             </ul>
                         </div>
                     </div>
@@ -464,7 +568,9 @@
                 </div>
             </section>
 
-            <!-- SECTION: ADMISSIONS -->
+            <!-- ==================================================
+                 ADMISSIONS
+            ================================================== -->
             <section id="admissions" class="page-section">
                 <div class="section-header">
                     <span class="section-tag">Admissions</span>
@@ -474,12 +580,12 @@
                 <div class="dash-card">
                     <div class="card-header"><h3><i class="fas fa-route"></i> Admission Process</h3></div>
                     <div class="steps-grid">
-                        <div class="step-item"><div class="step-num">1</div><h4>Submit Inquiry</h4><p>[Add description]</p></div>
-                        <div class="step-item"><div class="step-num">2</div><h4>Application</h4><p>[Add description]</p></div>
-                        <div class="step-item"><div class="step-num">3</div><h4>Document Review</h4><p>[Add description]</p></div>
-                        <div class="step-item"><div class="step-num">4</div><h4>Interview</h4><p>[Add description]</p></div>
-                        <div class="step-item"><div class="step-num">5</div><h4>Admission Decision</h4><p>[Add description]</p></div>
-                        <div class="step-item"><div class="step-num">6</div><h4>Enrollment</h4><p>[Add description]</p></div>
+                        <div class="step-item"><div class="step-num">1</div><h4>Submit Inquiry</h4><p>Fill out our inquiry form</p></div>
+                        <div class="step-item"><div class="step-num">2</div><h4>Application</h4><p>Complete application form</p></div>
+                        <div class="step-item"><div class="step-num">3</div><h4>Document Review</h4><p>Submit required documents</p></div>
+                        <div class="step-item"><div class="step-num">4</div><h4>Interview</h4><p>Meet with school staff</p></div>
+                        <div class="step-item"><div class="step-num">5</div><h4>Decision</h4><p>Receive admission result</p></div>
+                        <div class="step-item"><div class="step-num">6</div><h4>Enrollment</h4><p>Complete enrollment</p></div>
                     </div>
                 </div>
 
@@ -487,135 +593,189 @@
                     <div class="dash-card">
                         <div class="card-header"><h3><i class="fas fa-file-alt"></i> Requirements</h3></div>
                         <ul class="simple-list">
-                            <li><i class="fas fa-check"></i> Application Form</li>
-                            <li><i class="fas fa-check"></i> Birth Certificate</li>
-                            <li><i class="fas fa-check"></i> ID / Passport</li>
-                            <li><i class="fas fa-check"></i> Academic Records</li>
+                            <li><i class="fas fa-check"></i> Completed Application Form</li>
+                            <li><i class="fas fa-check"></i> Birth Certificate (copy)</li>
+                            <li><i class="fas fa-check"></i> ID Card / Passport (copy)</li>
+                            <li><i class="fas fa-check"></i> Previous Academic Records</li>
                             <li><i class="fas fa-check"></i> Health Records</li>
+                            <li><i class="fas fa-check"></i> Recent Passport Photos</li>
                         </ul>
                     </div>
                     <div class="dash-card">
                         <div class="card-header"><h3><i class="fas fa-calendar"></i> Important Dates</h3></div>
                         <ul class="date-list">
-                            <li><span>[Month Day]</span> [Event Name]</li>
-                            <li><span>[Month Day]</span> [Event Name]</li>
-                            <li><span>[Month Day]</span> [Event Name]</li>
-                            <li><span>[Month Day]</span> [Event Name]</li>
+                            <li><span>Mar 20</span> National Holiday — School Closed</li>
+                            <li><span>Mar 25</span> Parent-Teacher Conference</li>
+                            <li><span>Apr 05</span> Science Fair 2026</li>
+                            <li><span>Apr 15</span> Sports Day</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="dash-card">
                     <div class="card-header"><h3><i class="fas fa-money-bill-wave"></i> Tuition Information</h3></div>
-                    <p class="text-center muted">[Add tuition information here]</p>
-                    <div class="text-center mt-20">
-                        <a href="#contact" class="btn btn-primary" data-goto="contact">Contact Admissions</a>
+                    <p class="muted">We offer competitive tuition rates with various payment options. Contact our admissions office for detailed fee structure per level.</p>
+                    <div class="mt-20">
+                        <a href="#contact" class="btn btn-primary" data-goto="contact">
+                            <i class="fas fa-envelope"></i> Contact Admissions
+                        </a>
                     </div>
                 </div>
             </section>
 
-            <!-- SECTION: NEWS -->
+            <!-- ==================================================
+                 NEWS
+            ================================================== -->
             <section id="news" class="page-section">
                 <div class="section-header">
                     <span class="section-tag">News</span>
-                    <h2>News & Announcements</h2>
+                    <h2>News &amp; Announcements</h2>
                 </div>
 
-                <div class="news-grid">
-                    <article class="news-card">
-                        <div class="news-image"><i class="fas fa-newspaper"></i></div>
-                        <div class="news-body">
+                <div class="filter-bar">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="announcements">Announcements</button>
+                    <button class="filter-btn" data-filter="academic">Academic</button>
+                    <button class="filter-btn" data-filter="activities">Activities</button>
+                    <button class="filter-btn" data-filter="events">Events</button>
+                </div>
+
+                <div class="news-grid" id="newsGrid">
+                    <!-- NEWS_ITEMS_START
+                         Untuk menambah berita, salin blok <article> di bawah
+                         dan ubah data-index, category, title, date, dan deskripsi.
+                    -->
+                    <article class="news-card clickable" data-news="0" data-category="announcements">
+                        <div class="news-image">
+                            <img src="https://picsum.photos/seed/spmstl-news1/600/400" alt="News">
                             <span class="news-cat">Announcements</span>
-                            <h3>[News Title Here]</h3>
-                            <p class="news-meta"><i class="fas fa-calendar"></i> [Date]</p>
-                            <p>[Short description of the news.]</p>
-                            <a href="#" class="card-link">Read More →</a>
+                        </div>
+                        <div class="news-body">
+                            <h3>School Holiday Announcement</h3>
+                            <p class="news-meta"><i class="fas fa-calendar"></i> 15 March 2026</p>
+                            <p>School will be closed on March 20-21 for the national holiday.</p>
+                            <span class="card-link">Read More <i class="fas fa-arrow-right"></i></span>
                         </div>
                     </article>
-                    <article class="news-card">
-                        <div class="news-image"><i class="fas fa-newspaper"></i></div>
-                        <div class="news-body">
+
+                    <article class="news-card clickable" data-news="1" data-category="academic">
+                        <div class="news-image">
+                            <img src="https://picsum.photos/seed/spmstl-news2/600/400" alt="News">
                             <span class="news-cat">Academic</span>
-                            <h3>[News Title Here]</h3>
-                            <p class="news-meta"><i class="fas fa-calendar"></i> [Date]</p>
-                            <p>[Short description of the news.]</p>
-                            <a href="#" class="card-link">Read More →</a>
+                        </div>
+                        <div class="news-body">
+                            <h3>Parent-Teacher Conference 2026</h3>
+                            <p class="news-meta"><i class="fas fa-calendar"></i> 10 March 2026</p>
+                            <p>Parent-teacher conferences will be held on March 25-26. Please sign up for a time slot.</p>
+                            <span class="card-link">Read More <i class="fas fa-arrow-right"></i></span>
                         </div>
                     </article>
-                    <article class="news-card">
-                        <div class="news-image"><i class="fas fa-newspaper"></i></div>
-                        <div class="news-body">
+
+                    <article class="news-card clickable" data-news="2" data-category="activities">
+                        <div class="news-image">
+                            <img src="https://picsum.photos/seed/spmstl-news3/600/400" alt="News">
                             <span class="news-cat">Activities</span>
-                            <h3>[News Title Here]</h3>
-                            <p class="news-meta"><i class="fas fa-calendar"></i> [Date]</p>
-                            <p>[Short description of the news.]</p>
-                            <a href="#" class="card-link">Read More →</a>
                         </div>
-                    </article>
-                    <article class="news-card">
-                        <div class="news-image"><i class="fas fa-newspaper"></i></div>
                         <div class="news-body">
-                            <span class="news-cat">Events</span>
-                            <h3>[News Title Here]</h3>
-                            <p class="news-meta"><i class="fas fa-calendar"></i> [Date]</p>
-                            <p>[Short description of the news.]</p>
-                            <a href="#" class="card-link">Read More →</a>
+                            <h3>Science Fair 2026 Registration Open</h3>
+                            <p class="news-meta"><i class="fas fa-calendar"></i> 5 March 2026</p>
+                            <p>The annual Science Fair will take place on April 5. Register your project now.</p>
+                            <span class="card-link">Read More <i class="fas fa-arrow-right"></i></span>
                         </div>
                     </article>
+
+                    <article class="news-card clickable" data-news="3" data-category="events">
+                        <div class="news-image">
+                            <img src="https://picsum.photos/seed/spmstl-news4/600/400" alt="News">
+                            <span class="news-cat">Events</span>
+                        </div>
+                        <div class="news-body">
+                            <h3>Sports Day 2026</h3>
+                            <p class="news-meta"><i class="fas fa-calendar"></i> 1 March 2026</p>
+                            <p>Mark your calendars — Sports Day will be held on April 15 at the school field.</p>
+                            <span class="card-link">Read More <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </article>
+                    <!-- NEWS_ITEMS_END -->
                 </div>
             </section>
 
-            <!-- SECTION: EVENTS -->
+            <!-- ==================================================
+                 EVENTS
+            ================================================== -->
             <section id="events" class="page-section">
                 <div class="section-header">
                     <span class="section-tag">Events</span>
                     <h2>Upcoming School Events</h2>
                 </div>
 
-                <div class="event-cards-grid">
-                    <div class="dash-card event-card">
+                <div class="event-cards-grid" id="eventsGrid">
+                    <!-- EVENT_ITEMS_START
+                         Untuk menambah event, salin blok <div class="dash-card event-card clickable">
+                         dan ubah data-event, tanggal, judul, waktu, dan lokasi.
+                    -->
+                    <div class="dash-card event-card clickable" data-event="0">
                         <div class="event-date-large">
-                            <span class="event-day">[Day]</span>
-                            <span class="event-month">[Month]</span>
-                            <span class="event-year">[Year]</span>
+                            <span class="event-day">20</span>
+                            <span class="event-month">Mar</span>
+                            <span class="event-year">2026</span>
                         </div>
                         <div class="event-detail">
-                            <h3>[Event Name]</h3>
-                            <p><i class="fas fa-clock"></i> [Time]</p>
-                            <p><i class="fas fa-map-marker-alt"></i> [Location]</p>
-                            <p>[Add description]</p>
+                            <h3>National Holiday</h3>
+                            <p><i class="fas fa-clock"></i> All Day</p>
+                            <p><i class="fas fa-map-marker-alt"></i> School Closed</p>
+                            <p>School will be closed in observance of the national holiday.</p>
                         </div>
                     </div>
-                    <div class="dash-card event-card">
+
+                    <div class="dash-card event-card clickable" data-event="1">
                         <div class="event-date-large">
-                            <span class="event-day">[Day]</span>
-                            <span class="event-month">[Month]</span>
-                            <span class="event-year">[Year]</span>
+                            <span class="event-day">25</span>
+                            <span class="event-month">Mar</span>
+                            <span class="event-year">2026</span>
                         </div>
                         <div class="event-detail">
-                            <h3>[Event Name]</h3>
-                            <p><i class="fas fa-clock"></i> [Time]</p>
-                            <p><i class="fas fa-map-marker-alt"></i> [Location]</p>
-                            <p>[Add description]</p>
+                            <h3>Parent-Teacher Conference</h3>
+                            <p><i class="fas fa-clock"></i> 09:00 - 15:00</p>
+                            <p><i class="fas fa-map-marker-alt"></i> School Hall</p>
+                            <p>Meet with your child's teachers to discuss academic progress and development.</p>
                         </div>
                     </div>
-                    <div class="dash-card event-card">
+
+                    <div class="dash-card event-card clickable" data-event="2">
                         <div class="event-date-large">
-                            <span class="event-day">[Day]</span>
-                            <span class="event-month">[Month]</span>
-                            <span class="event-year">[Year]</span>
+                            <span class="event-day">05</span>
+                            <span class="event-month">Apr</span>
+                            <span class="event-year">2026</span>
                         </div>
                         <div class="event-detail">
-                            <h3>[Event Name]</h3>
-                            <p><i class="fas fa-clock"></i> [Time]</p>
-                            <p><i class="fas fa-map-marker-alt"></i> [Location]</p>
-                            <p>[Add description]</p>
+                            <h3>Science Fair 2026</h3>
+                            <p><i class="fas fa-clock"></i> 10:00 - 16:00</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Gymnasium</p>
+                            <p>Students showcase their science projects. Open to parents and the community.</p>
                         </div>
                     </div>
+
+                    <div class="dash-card event-card clickable" data-event="3">
+                        <div class="event-date-large">
+                            <span class="event-day">15</span>
+                            <span class="event-month">Apr</span>
+                            <span class="event-year">2026</span>
+                        </div>
+                        <div class="event-detail">
+                            <h3>Sports Day 2026</h3>
+                            <p><i class="fas fa-clock"></i> 08:00 - 17:00</p>
+                            <p><i class="fas fa-map-marker-alt"></i> School Field</p>
+                            <p>A full day of athletic competitions and team activities for all grade levels.</p>
+                        </div>
+                    </div>
+                    <!-- EVENT_ITEMS_END -->
                 </div>
             </section>
 
-            <!-- SECTION: STUDENT LIFE -->
+            <!-- ==================================================
+                 STUDENT LIFE
+            ================================================== -->
             <section id="student-life" class="page-section">
                 <div class="section-header">
                     <span class="section-tag">Student Life</span>
@@ -623,94 +783,150 @@
                 </div>
 
                 <div class="grid-3">
-                    <div class="dash-card">
-                        <div class="program-icon"><i class="fas fa-palette"></i></div>
-                        <h3>Clubs & Activities</h3>
-                        <p>[Add description of clubs and activities]</p>
-                        <ul class="simple-list">
-                            <li>Science Club</li>
-                            <li>Art Club</li>
-                            <li>Music Club</li>
-                        </ul>
+                    <div class="dash-card program-card">
+                        <div class="program-image">
+                            <img src="https://picsum.photos/seed/spmstl-clubs/500/300" alt="Clubs">
+                        </div>
+                        <div class="program-content">
+                            <h3>Clubs &amp; Activities</h3>
+                            <p>Students explore interests and build skills through a variety of clubs.</p>
+                            <ul class="simple-list">
+                                <li>Science Club</li>
+                                <li>Art &amp; Design Club</li>
+                                <li>Music &amp; Drama Club</li>
+                                <li>Language Club</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="dash-card">
-                        <div class="program-icon"><i class="fas fa-futbol"></i></div>
-                        <h3>Sports Programs</h3>
-                        <p>[Add description of sports programs]</p>
-                        <ul class="simple-list">
-                            <li>Football</li>
-                            <li>Basketball</li>
-                            <li>Athletics</li>
-                        </ul>
+
+                    <div class="dash-card program-card">
+                        <div class="program-image">
+                            <img src="https://picsum.photos/seed/spmstl-sports/500/300" alt="Sports">
+                        </div>
+                        <div class="program-content">
+                            <h3>Sports Programs</h3>
+                            <p>Building teamwork, discipline, and physical fitness through sports.</p>
+                            <ul class="simple-list">
+                                <li>Football</li>
+                                <li>Basketball</li>
+                                <li>Volleyball</li>
+                                <li>Athletics</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="dash-card">
-                        <div class="program-icon"><i class="fas fa-hands-helping"></i></div>
-                        <h3>Community Service</h3>
-                        <p>[Add description of community service]</p>
-                        <ul class="simple-list">
-                            <li>Environmental Programs</li>
-                            <li>Social Outreach</li>
-                            <li>Leadership Training</li>
-                        </ul>
+
+                    <div class="dash-card program-card">
+                        <div class="program-image">
+                            <img src="https://picsum.photos/seed/spmstl-community/500/300" alt="Community">
+                        </div>
+                        <div class="program-content">
+                            <h3>Community Service</h3>
+                            <p>Fostering compassion and civic responsibility through outreach programs.</p>
+                            <ul class="simple-list">
+                                <li>Environmental Programs</li>
+                                <li>Social Outreach</li>
+                                <li>Leadership Training</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- SECTION: GALLERY -->
+            <!-- ==================================================
+                 GALLERY
+            ================================================== -->
             <section id="gallery" class="page-section">
                 <div class="section-header">
                     <span class="section-tag">Gallery</span>
                     <h2>Photo Gallery</h2>
                 </div>
 
-                <div class="gallery-grid">
-                    <div class="gallery-item"><i class="fas fa-image"></i><span>[Photo 1]</span></div>
-                    <div class="gallery-item"><i class="fas fa-image"></i><span>[Photo 2]</span></div>
-                    <div class="gallery-item"><i class="fas fa-image"></i><span>[Photo 3]</span></div>
-                    <div class="gallery-item"><i class="fas fa-image"></i><span>[Photo 4]</span></div>
-                    <div class="gallery-item"><i class="fas fa-image"></i><span>[Photo 5]</span></div>
-                    <div class="gallery-item"><i class="fas fa-image"></i><span>[Photo 6]</span></div>
-                    <div class="gallery-item"><i class="fas fa-image"></i><span>[Photo 7]</span></div>
-                    <div class="gallery-item"><i class="fas fa-image"></i><span>[Photo 8]</span></div>
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- GALLERY_ITEMS_START
+                         Untuk menambah foto, salin blok <div class="gallery-item clickable" data-img="URL">.
+                         Ganti data-img dengan URL foto Anda.
+                    -->
+                    <div class="gallery-item clickable" data-img="https://picsum.photos/seed/spmstl-g1/800/600" data-caption="School Campus">
+                        <img src="https://picsum.photos/seed/spmstl-g1/400/400" alt="School Campus">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>School Campus</span></div>
+                    </div>
+                    <div class="gallery-item clickable" data-img="https://picsum.photos/seed/spmstl-g2/800/600" data-caption="Students in Class">
+                        <img src="https://picsum.photos/seed/spmstl-g2/400/400" alt="Classroom">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Classroom</span></div>
+                    </div>
+                    <div class="gallery-item clickable" data-img="https://picsum.photos/seed/spmstl-g3/800/600" data-caption="Science Lab">
+                        <img src="https://picsum.photos/seed/spmstl-g3/400/400" alt="Science Lab">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Science Lab</span></div>
+                    </div>
+                    <div class="gallery-item clickable" data-img="https://picsum.photos/seed/spmstl-g4/800/600" data-caption="Library">
+                        <img src="https://picsum.photos/seed/spmstl-g4/400/400" alt="Library">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Library</span></div>
+                    </div>
+                    <div class="gallery-item clickable" data-img="https://picsum.photos/seed/spmstl-g5/800/600" data-caption="Sports Day">
+                        <img src="https://picsum.photos/seed/spmstl-g5/400/400" alt="Sports Day">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Sports Day</span></div>
+                    </div>
+                    <div class="gallery-item clickable" data-img="https://picsum.photos/seed/spmstl-g6/800/600" data-caption="Art Class">
+                        <img src="https://picsum.photos/seed/spmstl-g6/400/400" alt="Art Class">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Art Class</span></div>
+                    </div>
+                    <div class="gallery-item clickable" data-img="https://picsum.photos/seed/spmstl-g7/800/600" data-caption="Music Performance">
+                        <img src="https://picsum.photos/seed/spmstl-g7/400/400" alt="Music">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Music</span></div>
+                    </div>
+                    <div class="gallery-item clickable" data-img="https://picsum.photos/seed/spmstl-g8/800/600" data-caption="Graduation">
+                        <img src="https://picsum.photos/seed/spmstl-g8/400/400" alt="Graduation">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Graduation</span></div>
+                    </div>
+                    <!-- GALLERY_ITEMS_END -->
                 </div>
             </section>
 
-            <!-- SECTION: FACULTY -->
+            <!-- ==================================================
+                 FACULTY
+            ================================================== -->
             <section id="faculty" class="page-section">
                 <div class="section-header">
                     <span class="section-tag">Faculty</span>
-                    <h2>Faculty & Staff</h2>
+                    <h2>Faculty &amp; Staff</h2>
                 </div>
 
                 <div class="faculty-grid">
+                    <!-- FACULTY_ITEMS_START
+                         Untuk menambah guru, salin blok <div class="dash-card faculty-card">
+                         dan ubah foto, nama, posisi, dan biografi.
+                    -->
                     <div class="dash-card faculty-card">
-                        <div class="faculty-avatar">[IN]</div>
-                        <h4>[Faculty Name]</h4>
-                        <span class="faculty-role">[Position]</span>
-                        <p>[Short biography]</p>
+                        <img class="faculty-photo" src="https://picsum.photos/seed/teacher1/300/300" alt="Faculty">
+                        <h4>[Teacher Name]</h4>
+                        <span class="faculty-role">Mathematics Teacher</span>
+                        <p>Experienced educator with a passion for helping students discover the beauty of mathematics.</p>
                     </div>
                     <div class="dash-card faculty-card">
-                        <div class="faculty-avatar">[IN]</div>
-                        <h4>[Faculty Name]</h4>
-                        <span class="faculty-role">[Position]</span>
-                        <p>[Short biography]</p>
+                        <img class="faculty-photo" src="https://picsum.photos/seed/teacher2/300/300" alt="Faculty">
+                        <h4>[Teacher Name]</h4>
+                        <span class="faculty-role">English Teacher</span>
+                        <p>Dedicated to building strong communication skills and a love for reading and writing.</p>
                     </div>
                     <div class="dash-card faculty-card">
-                        <div class="faculty-avatar">[IN]</div>
-                        <h4>[Faculty Name]</h4>
-                        <span class="faculty-role">[Position]</span>
-                        <p>[Short biography]</p>
+                        <img class="faculty-photo" src="https://picsum.photos/seed/teacher3/300/300" alt="Faculty">
+                        <h4>[Teacher Name]</h4>
+                        <span class="faculty-role">Science Teacher</span>
+                        <p>Bringing science to life through hands-on experiments and inquiry-based learning.</p>
                     </div>
                     <div class="dash-card faculty-card">
-                        <div class="faculty-avatar">[IN]</div>
-                        <h4>[Faculty Name]</h4>
-                        <span class="faculty-role">[Position]</span>
-                        <p>[Short biography]</p>
+                        <img class="faculty-photo" src="https://picsum.photos/seed/teacher4/300/300" alt="Faculty">
+                        <h4>[Teacher Name]</h4>
+                        <span class="faculty-role">Arts Teacher</span>
+                        <p>Inspiring creativity and self-expression through visual and performing arts.</p>
                     </div>
+                    <!-- FACULTY_ITEMS_END -->
                 </div>
             </section>
 
-            <!-- SECTION: CONTACT -->
+            <!-- ==================================================
+                 CONTACT
+            ================================================== -->
             <section id="contact" class="page-section">
                 <div class="section-header">
                     <span class="section-tag">Contact</span>
@@ -739,33 +955,30 @@
                             </li>
                         </ul>
                         <div class="social-links">
-                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" data-social="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" data-social="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" data-social="YouTube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
 
                     <div class="dash-card">
                         <div class="card-header"><h3><i class="fas fa-paper-plane"></i> Send Us a Message</h3></div>
-                        <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('.form-msg').style.display='block'; this.reset();">
+                        <form class="contact-form" id="contactForm" novalidate>
                             <div class="form-group">
-                                <label for="name">Full Name *</label>
-                                <input type="text" id="name" required placeholder="Enter your name">
+                                <label for="cName">Full Name *</label>
+                                <input type="text" id="cName" name="name" required placeholder="Enter your name">
                             </div>
                             <div class="form-group">
-                                <label for="email">Email *</label>
-                                <input type="email" id="email" required placeholder="Enter your email">
+                                <label for="cEmail">Email *</label>
+                                <input type="email" id="cEmail" name="email" required placeholder="Enter your email">
                             </div>
                             <div class="form-group">
-                                <label for="message">Message *</label>
-                                <textarea id="message" rows="4" required placeholder="Write your message..."></textarea>
+                                <label for="cMessage">Message *</label>
+                                <textarea id="cMessage" name="message" rows="4" required placeholder="Write your message..."></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">
                                 <i class="fas fa-paper-plane"></i> Send Message
                             </button>
-                            <p class="form-msg" style="display:none; color: #27ae60; font-weight: 500; margin-top: 12px; text-align: center;">
-                                ✓ Message sent (prototype only)
-                            </p>
                         </form>
                     </div>
                 </div>
@@ -774,7 +987,7 @@
                     <div class="map-placeholder">
                         <i class="fas fa-map-marked-alt"></i>
                         <p><strong>Map Placeholder</strong></p>
-                        <p>Replace this with Google Maps embed</p>
+                        <p>Replace with Google Maps embed</p>
                     </div>
                 </div>
             </section>
@@ -786,214 +999,600 @@
         </main>
     </div>
 
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-    <!-- ============================================
-         INLINE JS
-    ============================================ -->
+    <!-- ============================================================
+         DATA STORE (news, events — mudah diedit)
+    ============================================================ -->
     <script>
-        (function() {
-            const body          = document.body;
-            const loginForm     = document.getElementById('loginForm');
-            const loginUser     = document.getElementById('loginUser');
-            const loginPass     = document.getElementById('loginPass');
-            const loginBtn      = document.getElementById('loginBtn');
-            const rememberMe    = document.getElementById('rememberMe');
-            const togglePass    = document.getElementById('togglePassword');
-            const portalTabs    = document.querySelectorAll('.portal-tab');
-            const logoutBtn     = document.getElementById('logoutBtn');
-            const sidebar       = document.getElementById('sidebar');
-            const sidebarToggle = document.getElementById('sidebarToggle');
-            const sidebarOverlay= document.getElementById('sidebarOverlay');
-            const pageTitle     = document.getElementById('pageTitle');
-            const navLinks      = document.querySelectorAll('.nav-link');
-            const sections      = document.querySelectorAll('.page-section');
-            const headerUserName= document.getElementById('headerUserName');
-            const headerUserRole= document.getElementById('headerUserRole');
-            const headerAvatar  = document.getElementById('headerAvatar');
-
-            /* ---------- AUTH HELPERS ---------- */
-            function getStoredUser() {
-                try {
-                    const remember = localStorage.getItem('spmstl_user');
-                    if (remember) return JSON.parse(remember);
-                    const session = sessionStorage.getItem('spmstl_user');
-                    if (session) return JSON.parse(session);
-                } catch(e) { /* ignore */ }
-                return null;
+    window.SPMSTL_DATA = {
+        // DATA BERITA — setiap index = data-news di HTML
+        news: [
+            {
+                title: "School Holiday Announcement",
+                date: "15 March 2026",
+                category: "Announcements",
+                image: "https://picsum.photos/seed/spmstl-news1/800/400",
+                content: "School will be closed on March 20-21, 2026 in observance of the national holiday. Classes will resume on March 22. We wish all our students and families a restful break."
+            },
+            {
+                title: "Parent-Teacher Conference 2026",
+                date: "10 March 2026",
+                category: "Academic",
+                image: "https://picsum.photos/seed/spmstl-news2/800/400",
+                content: "Parent-teacher conferences will be held on March 25-26, 2026 from 09:00 to 15:00. Please sign up for a time slot through the school office. This is an important opportunity to discuss your child's progress."
+            },
+            {
+                title: "Science Fair 2026 Registration Open",
+                date: "5 March 2026",
+                category: "Student Activities",
+                image: "https://picsum.photos/seed/spmstl-news3/800/400",
+                content: "The annual Science Fair will take place on April 5, 2026 at the school gymnasium. Students from Primary to Senior High are encouraged to register their projects. Prizes will be awarded for the best projects."
+            },
+            {
+                title: "Sports Day 2026 — Save the Date",
+                date: "1 March 2026",
+                category: "Events",
+                image: "https://picsum.photos/seed/spmstl-news4/800/400",
+                content: "Mark your calendars! Sports Day will be held on April 15, 2026 at the school field. A full day of athletic competitions, team activities, and family fun awaits."
             }
+        ],
 
-            function getInitials(name) {
-                if (!name) return '?';
-                const base = name.split('@')[0];
-                const parts = base.split(/[\s._-]+/).filter(Boolean);
-                if (parts.length === 0) return '?';
-                if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
-                return (parts[0].charAt(0) + parts[1].charAt(0)).toUpperCase();
+        // DATA EVENT — setiap index = data-event di HTML
+        events: [
+            {
+                title: "National Holiday",
+                date: "20 March 2026",
+                time: "All Day",
+                location: "School Closed",
+                image: "https://picsum.photos/seed/spmstl-ev1/800/400",
+                content: "School will be closed in observance of the national holiday. We wish all our students and families a restful break."
+            },
+            {
+                title: "Parent-Teacher Conference",
+                date: "25 March 2026",
+                time: "09:00 - 15:00",
+                location: "School Hall",
+                image: "https://picsum.photos/seed/spmstl-ev2/800/400",
+                content: "Meet with your child's teachers to discuss academic progress and development. Sign up for a time slot through the school office."
+            },
+            {
+                title: "Science Fair 2026",
+                date: "5 April 2026",
+                time: "10:00 - 16:00",
+                location: "Gymnasium",
+                image: "https://picsum.photos/seed/spmstl-ev3/800/400",
+                content: "Students showcase their science projects to the school community. Open to parents and the public. Come support our young scientists!"
+            },
+            {
+                title: "Sports Day 2026",
+                date: "15 April 2026",
+                time: "08:00 - 17:00",
+                location: "School Field",
+                image: "https://picsum.photos/seed/spmstl-ev4/800/400",
+                content: "A full day of athletic competitions and team activities for all grade levels. Parents and families are welcome to attend and cheer on the students."
             }
+        ]
+    };
+    </script>
 
-            function setUserUI(user, portal) {
-                if (headerUserName) headerUserName.textContent = user;
-                if (headerUserRole) headerUserRole.textContent = portal.charAt(0).toUpperCase() + portal.slice(1);
-                if (headerAvatar)   headerAvatar.textContent   = getInitials(user);
+    <!-- ============================================================
+         MAIN JAVASCRIPT
+    ============================================================ -->
+    <script>
+    (function() {
+        "use strict";
+
+        /* --------------------------------------------------------
+           HELPERS
+        -------------------------------------------------------- */
+        const $  = (sel, ctx) => (ctx || document).querySelector(sel);
+        const $$ = (sel, ctx) => Array.from((ctx || document).querySelectorAll(sel));
+
+        const STORAGE_KEY       = 'spmstl_user';
+        const STORAGE_ACCOUNTS  = 'spmstl_recent_accounts';
+        const STORAGE_MESSAGES  = 'spmstl_messages';
+
+        function getJSON(key, fallback) {
+            try {
+                const raw = localStorage.getItem(key) || sessionStorage.getItem(key);
+                return raw ? JSON.parse(raw) : fallback;
+            } catch(e) { return fallback; }
+        }
+
+        function saveJSON(key, data, persistent) {
+            try {
+                const store = persistent ? localStorage : sessionStorage;
+                store.setItem(key, JSON.stringify(data));
+            } catch(e) { /* ignore quota errors */ }
+        }
+
+        function getInitials(name) {
+            if (!name) return '?';
+            const base = name.split('@')[0];
+            const parts = base.split(/[\s._-]+/).filter(Boolean);
+            if (!parts.length) return '?';
+            if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
+            return (parts[0].charAt(0) + parts[1].charAt(0)).toUpperCase();
+        }
+
+        /* --------------------------------------------------------
+           TOAST
+        -------------------------------------------------------- */
+        const toastContainer = $('#toastContainer');
+        function showToast(message, type) {
+            type = type || 'success';
+            const icons = {
+                success: 'fa-check-circle',
+                info:    'fa-info-circle',
+                warning: 'fa-exclamation-triangle',
+                error:   'fa-times-circle'
+            };
+            const el = document.createElement('div');
+            el.className = 'toast toast-' + type;
+            el.innerHTML = `<i class="fas ${icons[type] || icons.info}"></i><span>${message}</span>`;
+            toastContainer.appendChild(el);
+            requestAnimationFrame(() => el.classList.add('show'));
+            setTimeout(() => {
+                el.classList.remove('show');
+                setTimeout(() => el.remove(), 300);
+            }, 3200);
+        }
+
+        /* --------------------------------------------------------
+           MODAL
+        -------------------------------------------------------- */
+        const modalOverlay = $('#modalOverlay');
+        const modalContent = $('#modalContent');
+        const modalClose   = $('#modalClose');
+
+        function openModal(html) {
+            modalContent.innerHTML = html;
+            modalOverlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            modalOverlay.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        modalClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+        /* --------------------------------------------------------
+           LIGHTBOX
+        -------------------------------------------------------- */
+        const lightbox   = $('#lightbox');
+        const lbImg      = $('#lbImg');
+        const lbCaption  = $('#lbCaption');
+        const lbPrev     = $('#lbPrev');
+        const lbNext     = $('#lbNext');
+        let lbItems = [];
+        let lbIndex = 0;
+
+        function openLightbox(items, index) {
+            lbItems = items;
+            lbIndex = index;
+            renderLightbox();
+            lightbox.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            lightbox.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        function renderLightbox() {
+            const item = lbItems[lbIndex];
+            if (!item) return;
+            lbImg.src = item.src;
+            lbImg.alt = item.caption || 'Gallery Image';
+            lbCaption.textContent = item.caption || '';
+            lbPrev.style.display = lbItems.length > 1 ? '' : 'none';
+            lbNext.style.display = lbItems.length > 1 ? '' : 'none';
+        }
+        function navLightbox(dir) {
+            if (!lbItems.length) return;
+            lbIndex = (lbIndex + dir + lbItems.length) % lbItems.length;
+            renderLightbox();
+        }
+        $('#lbClose').addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+        lbPrev.addEventListener('click', () => navLightbox(-1));
+        lbNext.addEventListener('click', () => navLightbox(1));
+        document.addEventListener('keydown', e => {
+            if (!lightbox.classList.contains('show')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navLightbox(-1);
+            if (e.key === 'ArrowRight') navLightbox(1);
+        });
+
+        /* --------------------------------------------------------
+           AUTH
+        -------------------------------------------------------- */
+        const body          = document.body;
+        const loginForm     = $('#loginForm');
+        const loginUser     = $('#loginUser');
+        const loginPass     = $('#loginPass');
+        const loginBtn      = $('#loginBtn');
+        const rememberMe    = $('#rememberMe');
+        const togglePass    = $('#togglePassword');
+        const portalTabs    = $$('.portal-tab');
+        const logoutBtn     = $('#logoutBtn');
+        const headerAvatar  = $('#headerAvatar');
+        const headerUserName= $('#headerUserName');
+        const headerUserRole= $('#headerUserRole');
+        const recentAccounts= $('#recentAccounts');
+        const recentChips   = $('#recentChips');
+        const forgotLink    = $('#forgotLink');
+
+        let currentPortal = 'student';
+
+        function renderRecentAccounts() {
+            const list = getJSON(STORAGE_ACCOUNTS, []);
+            if (!list.length) {
+                recentAccounts.style.display = 'none';
+                return;
             }
+            recentAccounts.style.display = 'block';
+            recentChips.innerHTML = list.slice(0, 3).map(acc =>
+                `<button type="button" class="recent-chip" data-user="${acc.user}" data-portal="${acc.portal}">
+                    <i class="fas fa-user-circle"></i>
+                    <span>${acc.user}</span>
+                 </button>`
+            ).join('');
 
-            function applyAuthState() {
-                const user = getStoredUser();
-                if (user) {
-                    body.classList.add('logged-in');
-                    setUserUI(user.user, user.portal || 'student');
-                } else {
-                    body.classList.remove('logged-in');
-                }
-            }
-
-            /* ---------- SECTION NAV ---------- */
-            function showSection(id, title) {
-                sections.forEach(s => s.classList.remove('active'));
-                const target = document.getElementById(id);
-                if (target) target.classList.add('active');
-
-                navLinks.forEach(link => {
-                    link.classList.toggle('active', link.dataset.section === id);
+            $$('.recent-chip', recentChips).forEach(chip => {
+                chip.addEventListener('click', () => {
+                    loginUser.value = chip.dataset.user;
+                    const portal = chip.dataset.portal || 'student';
+                    setPortal(portal);
+                    loginPass.focus();
                 });
+            });
+        }
 
-                if (pageTitle && title) pageTitle.textContent = title;
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+        function addRecentAccount(user, portal) {
+            const list = getJSON(STORAGE_ACCOUNTS, []);
+            const filtered = list.filter(a => !(a.user === user && a.portal === portal));
+            filtered.unshift({ user, portal, ts: Date.now() });
+            saveJSON(STORAGE_ACCOUNTS, filtered.slice(0, 5), true);
+        }
 
-                if (window.innerWidth <= 900) {
-                    sidebar.classList.remove('open');
-                    sidebarOverlay.classList.remove('show');
-                }
+        function setPortal(portal) {
+            currentPortal = portal;
+            portalTabs.forEach(t => t.classList.toggle('active', t.dataset.portal === portal));
+            const placeholders = {
+                student: 'Enter your student ID or email',
+                parent:  'Enter your parent email',
+                teacher: 'Enter your teacher email'
+            };
+            loginUser.placeholder = placeholders[portal] || 'Enter your ID or email';
+            loginBtn.innerHTML = `<i class="fas fa-sign-in-alt"></i> Sign In as ${portal.charAt(0).toUpperCase() + portal.slice(1)}`;
+        }
+
+        function applyAuthState() {
+            const user = getJSON(STORAGE_KEY, null);
+            if (user && user.user) {
+                body.classList.add('logged-in');
+                headerUserName.textContent = user.user;
+                headerUserRole.textContent = (user.portal || 'student').charAt(0).toUpperCase() + (user.portal || 'student').slice(1);
+                headerAvatar.textContent = getInitials(user.user);
+            } else {
+                body.classList.remove('logged-in');
             }
+        }
+
+        portalTabs.forEach(tab => {
+            tab.addEventListener('click', () => setPortal(tab.dataset.portal));
+        });
+
+        togglePass.addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            loginPass.type = loginPass.type === 'password' ? 'text' : 'password';
+            icon.className = loginPass.type === 'password' ? 'fas fa-eye' : 'fas fa-eye-slash';
+        });
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userVal = loginUser.value.trim();
+            const passVal = loginPass.value;
+            if (!userVal) { showToast('Please enter your ID or email', 'warning'); loginUser.focus(); return; }
+            if (!passVal) { showToast('Please enter your password', 'warning'); loginPass.focus(); return; }
+
+            const remember = rememberMe.checked;
+            const originalHTML = loginBtn.innerHTML;
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in...';
+            loginBtn.disabled = true;
+
+            setTimeout(() => {
+                const userData = { user: userVal, portal: currentPortal, ts: Date.now() };
+                saveJSON(STORAGE_KEY, userData, remember);
+                // mirror the other store
+                try {
+                    if (remember) sessionStorage.removeItem(STORAGE_KEY);
+                    else localStorage.removeItem(STORAGE_KEY);
+                } catch(e) {}
+
+                addRecentAccount(userVal, currentPortal);
+
+                headerUserName.textContent = userVal;
+                headerUserRole.textContent = currentPortal.charAt(0).toUpperCase() + currentPortal.slice(1);
+                headerAvatar.textContent = getInitials(userVal);
+
+                body.classList.add('logged-in');
+                loginForm.reset();
+                loginBtn.innerHTML = originalHTML;
+                loginBtn.disabled = false;
+
+                showToast('Welcome, ' + userVal + '!', 'success');
+                showSection('dashboard', 'Dashboard');
+            }, 700);
+        });
+
+        logoutBtn.addEventListener('click', function() {
+            if (!confirm('Are you sure you want to sign out?')) return;
+            try {
+                localStorage.removeItem(STORAGE_KEY);
+                sessionStorage.removeItem(STORAGE_KEY);
+            } catch(e) {}
+            body.classList.remove('logged-in');
+            headerUserName.textContent = 'Student';
+            headerUserRole.textContent = 'Student';
+            headerAvatar.textContent = '?';
+            loginForm.reset();
+            renderRecentAccounts();
+            showSection('dashboard', 'Dashboard');
+            showToast('You have been signed out.', 'info');
+        });
+
+        forgotLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            openModal(`
+                <h2>Reset Password</h2>
+                <p class="modal-sub">Enter your registered email and we'll send you a password reset link.</p>
+                <form id="resetForm" class="modal-form">
+                    <div class="form-group">
+                        <label for="resetEmail">Registered Email</label>
+                        <input type="email" id="resetEmail" required placeholder="you@example.com">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-paper-plane"></i> Send Reset Link
+                    </button>
+                </form>
+                <p class="note-box" style="margin-top:16px;">
+                    <i class="fas fa-info-circle"></i> Prototype: no actual email is sent. Contact the school office for a real reset.
+                </p>
+            `);
+            $('#resetForm').addEventListener('submit', ev => {
+                ev.preventDefault();
+                const email = $('#resetEmail').value;
+                saveJSON('spmstl_reset_requests', 
+                    (getJSON('spmstl_reset_requests', [])).concat([{ email, ts: Date.now() }]), true);
+                closeModal();
+                showToast('Reset request saved for ' + email, 'success');
+            });
+        });
+
+        /* --------------------------------------------------------
+           NAVIGATION
+        -------------------------------------------------------- */
+        const sidebar        = $('#sidebar');
+        const sidebarToggle  = $('#sidebarToggle');
+        const sidebarOverlay = $('#sidebarOverlay');
+        const pageTitle      = $('#pageTitle');
+        const navLinks       = $$('.nav-link');
+        const sections       = $$('.page-section');
+
+        function showSection(id, title) {
+            sections.forEach(s => s.classList.remove('active'));
+            const target = document.getElementById(id);
+            if (target) target.classList.add('active');
 
             navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const id = this.dataset.section;
-                    const title = this.dataset.title || this.textContent.trim();
-                    showSection(id, title);
-                    history.replaceState(null, '', '#' + id);
-                });
+                link.classList.toggle('active', link.dataset.section === id);
             });
 
-            document.querySelectorAll('[data-goto]').forEach(el => {
-                el.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const id = this.dataset.goto;
-                    const titleEl = document.querySelector(`.nav-link[data-section="${id}"]`);
-                    const title = titleEl ? (titleEl.dataset.title || titleEl.textContent.trim()) : id;
-                    showSection(id, title);
-                    history.replaceState(null, '', '#' + id);
-                });
-            });
+            if (pageTitle && title) pageTitle.textContent = title;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            /* ---------- SIDEBAR TOGGLE ---------- */
-            sidebarToggle && sidebarToggle.addEventListener('click', () => {
-                sidebar.classList.toggle('open');
-                sidebarOverlay.classList.toggle('show');
-            });
-            sidebarOverlay && sidebarOverlay.addEventListener('click', () => {
+            if (window.innerWidth <= 900) {
                 sidebar.classList.remove('open');
                 sidebarOverlay.classList.remove('show');
-            });
+            }
+        }
 
-            /* ---------- PASSWORD VISIBILITY ---------- */
-            togglePass && togglePass.addEventListener('click', function() {
-                const icon = this.querySelector('i');
-                if (loginPass.type === 'password') {
-                    loginPass.type = 'text';
-                    icon.className = 'fas fa-eye-slash';
-                } else {
-                    loginPass.type = 'password';
-                    icon.className = 'fas fa-eye';
-                }
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                showSection(this.dataset.section, this.dataset.title || this.textContent.trim());
+                history.replaceState(null, '', '#' + this.dataset.section);
             });
+        });
 
-            /* ---------- PORTAL TABS ---------- */
-            portalTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    portalTabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    const portal = this.dataset.portal;
-                    const placeholders = {
-                        student: 'Enter your student ID or email',
-                        parent:  'Enter your parent email',
-                        teacher: 'Enter your teacher email'
-                    };
-                    loginUser.placeholder = placeholders[portal] || 'Enter your ID or email';
-                    loginBtn.innerHTML = `<i class="fas fa-sign-in-alt"></i> Sign In as ${portal.charAt(0).toUpperCase() + portal.slice(1)}`;
+        document.addEventListener('click', function(e) {
+            const goTo = e.target.closest('[data-goto]');
+            if (goTo) {
+                e.preventDefault();
+                const id = goTo.dataset.goto;
+                const titleEl = document.querySelector(`.nav-link[data-section="${id}"]`);
+                const title = titleEl ? (titleEl.dataset.title || titleEl.textContent.trim()) : id;
+                showSection(id, title);
+                history.replaceState(null, '', '#' + id);
+            }
+        });
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            sidebarOverlay.classList.toggle('show');
+        });
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('show');
+        });
+
+        /* --------------------------------------------------------
+           NOTIFICATIONS PANEL
+        -------------------------------------------------------- */
+        const notifBtn   = $('#notifBtn');
+        const notifPanel = $('#notifPanel');
+        const notifDot   = $('#notifDot');
+        const notifClear = $('#notifClear');
+
+        notifBtn.addEventListener('click', e => {
+            e.stopPropagation();
+            notifPanel.classList.toggle('show');
+        });
+        document.addEventListener('click', e => {
+            if (!notifPanel.contains(e.target) && !notifBtn.contains(e.target)) {
+                notifPanel.classList.remove('show');
+            }
+        });
+        notifClear.addEventListener('click', () => {
+            $$('.notif-item').forEach(item => item.classList.remove('unread'));
+            notifDot.style.display = 'none';
+            showToast('All notifications marked as read.', 'info');
+        });
+
+        /* --------------------------------------------------------
+           NEWS
+        -------------------------------------------------------- */
+        const newsData = (window.SPMSTL_DATA && window.SPMSTL_DATA.news) || [];
+        const newsItems = $$('[data-news]');
+
+        function openNews(index) {
+            const item = newsData[index];
+            if (!item) return;
+            openModal(`
+                <div class="modal-news-image">
+                    <img src="${item.image}" alt="${item.title}">
+                    <span class="modal-cat">${item.category}</span>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-date"><i class="fas fa-calendar"></i> ${item.date}</p>
+                    <h2>${item.title}</h2>
+                    <p>${item.content}</p>
+                </div>
+            `);
+        }
+
+        newsItems.forEach(el => {
+            el.addEventListener('click', () => openNews(parseInt(el.dataset.news, 10)));
+        });
+
+        // News filter
+        const filterBtns = $$('.filter-btn');
+        const newsGrid   = $('#newsGrid');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                $$('.news-card', newsGrid).forEach(card => {
+                    const cat = card.dataset.category;
+                    const show = filter === 'all' || cat === filter;
+                    card.style.display = show ? '' : 'none';
                 });
             });
+        });
 
-            /* ---------- LOGIN ---------- */
-            loginForm && loginForm.addEventListener('submit', function(e) {
+        /* --------------------------------------------------------
+           EVENTS
+        -------------------------------------------------------- */
+        const eventsData = (window.SPMSTL_DATA && window.SPMSTL_DATA.events) || [];
+        const eventItems = $$('[data-event]');
+
+        function openEvent(index) {
+            const item = eventsData[index];
+            if (!item) return;
+            openModal(`
+                <div class="modal-news-image">
+                    <img src="${item.image}" alt="${item.title}">
+                    <span class="modal-cat">Event</span>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-date"><i class="fas fa-calendar"></i> ${item.date} · ${item.time}</p>
+                    <h2>${item.title}</h2>
+                    <p class="modal-location"><i class="fas fa-map-marker-alt"></i> ${item.location}</p>
+                    <p>${item.content}</p>
+                </div>
+            `);
+        }
+
+        eventItems.forEach(el => {
+            el.addEventListener('click', () => openEvent(parseInt(el.dataset.event, 10)));
+        });
+
+        /* --------------------------------------------------------
+           GALLERY LIGHTBOX
+        -------------------------------------------------------- */
+        const galleryItems = $$('.gallery-item');
+        const galleryData = galleryItems.map(el => ({
+            src: el.dataset.img,
+            caption: el.dataset.caption || ''
+        }));
+
+        galleryItems.forEach((el, i) => {
+            el.addEventListener('click', () => openLightbox(galleryData, i));
+        });
+
+        /* --------------------------------------------------------
+           CONTACT FORM
+        -------------------------------------------------------- */
+        const contactForm = $('#contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                const userVal = loginUser.value.trim();
-                const passVal = loginPass.value;
-                const remember = rememberMe.checked;
-                const activeTab = document.querySelector('.portal-tab.active');
-                const portal = activeTab ? activeTab.dataset.portal : 'student';
-
-                if (!userVal || !passVal) return;
-
-                const originalHTML = loginBtn.innerHTML;
-                loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in...';
-                loginBtn.disabled = true;
-
-                setTimeout(() => {
-                    const userData = { user: userVal, portal, ts: Date.now() };
-                    try {
-                        if (remember) {
-                            localStorage.setItem('spmstl_user', JSON.stringify(userData));
-                            sessionStorage.removeItem('spmstl_user');
-                        } else {
-                            sessionStorage.setItem('spmstl_user', JSON.stringify(userData));
-                            localStorage.removeItem('spmstl_user');
-                        }
-                    } catch(err) { /* storage might be blocked */ }
-
-                    setUserUI(userVal, portal);
-                    body.classList.add('logged-in');
-                    loginForm.reset();
-                    loginBtn.innerHTML = originalHTML;
-                    loginBtn.disabled = false;
-
-                    // Reset to dashboard
-                    showSection('dashboard', 'Dashboard');
-                    history.replaceState(null, '', '#dashboard');
-                }, 700);
-            });
-
-            /* ---------- LOGOUT ---------- */
-            logoutBtn && logoutBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                try {
-                    localStorage.removeItem('spmstl_user');
-                    sessionStorage.removeItem('spmstl_user');
-                } catch(err) {}
-                body.classList.remove('logged-in');
-                // Reset UI
-                if (headerUserName) headerUserName.textContent = 'Guest';
-                if (headerUserRole) headerUserRole.textContent = '—';
-                if (headerAvatar)   headerAvatar.textContent   = '?';
-                // Reset section
-                showSection('dashboard', 'Dashboard');
-                history.replaceState(null, '', '#');
-            });
-
-            /* ---------- INIT ---------- */
-            applyAuthState();
-
-            window.addEventListener('DOMContentLoaded', function() {
-                const hash = window.location.hash.replace('#', '');
-                if (hash && body.classList.contains('logged-in')) {
-                    const titleEl = document.querySelector(`.nav-link[data-section="${hash}"]`);
-                    const title = titleEl ? (titleEl.dataset.title || titleEl.textContent.trim()) : hash;
-                    showSection(hash, title);
+                const name    = $('#cName').value.trim();
+                const email   = $('#cEmail').value.trim();
+                const message = $('#cMessage').value.trim();
+                if (!name || !email || !message) {
+                    showToast('Please fill in all fields.', 'warning');
+                    return;
                 }
+                const all = getJSON(STORAGE_MESSAGES, []);
+                all.unshift({ name, email, message, ts: Date.now() });
+                saveJSON(STORAGE_MESSAGES, all.slice(0, 50), true);
+                contactForm.reset();
+                showToast('Message sent! We will get back to you soon.', 'success');
             });
-        })();
+        }
+
+        /* --------------------------------------------------------
+           SOCIAL LINKS
+        -------------------------------------------------------- */
+        $$('[data-social]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                showToast('Opening ' + this.dataset.social + '…', 'info');
+            });
+        });
+
+        /* --------------------------------------------------------
+           INIT
+        -------------------------------------------------------- */
+        applyAuthState();
+        renderRecentAccounts();
+
+        // Restore last portal
+        const lastPortal = getJSON('spmstl_last_portal', null);
+        if (lastPortal) setPortal(lastPortal);
+
+        // Restore hash
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = location.hash.replace('#', '');
+            if (hash && body.classList.contains('logged-in')) {
+                const titleEl = document.querySelector(`.nav-link[data-section="${hash}"]`);
+                const title = titleEl ? (titleEl.dataset.title || titleEl.textContent.trim()) : hash;
+                showSection(hash, title);
+            }
+        });
+
+        // Save last portal on change
+        portalTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                saveJSON('spmstl_last_portal', tab.dataset.portal, true);
+            });
+        });
+
+    })();
     </script>
 </body>
 </html>
