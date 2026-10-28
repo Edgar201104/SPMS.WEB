@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St Paul Methodist School Timor-Leste | Portal</title>
+    <meta name="description" content="Official portal of St Paul Methodist School Timor-Leste - International school providing quality education from Elementary to High School.">
+    <meta property="og:title" content="St Paul Methodist School Timor-Leste">
+    <meta property="og:description" content="Empowering Students for a Brighter Future">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ============================================
+         LOGIN SCREEN
+    ============================================ -->
+    <div class="login-screen" id="loginScreen">
+        <!-- Left: Branding Panel -->
+        <div class="login-left">
+            <div class="login-decoration"></div>
+            <div class="login-left-content">
+                <div class="login-brand">
+                    <img src="images/logo.png" alt="SPMSTL Logo" class="login-logo" onerror="this.style.display='none'">
+                    <div class="login-brand-text">
+                        <span class="login-brand-main">St Paul Methodist School</span>
+                        <span class="login-brand-sub">Timor-Leste</span>
+                    </div>
+                </div>
+
+                <div class="login-tagline">
+                    <h2>Empowering Students for a Brighter Future</h2>
+                    <p>Sign in to access your dashboard, schedules, assignments, and stay connected with the school community.</p>
+                </div>
+
+                <ul class="login-features">
+                    <li><i class="fas fa-check-circle"></i> Access your academic schedule</li>
+                    <li><i class="fas fa-check-circle"></i> Track assignments & grades</li>
+                    <li><i class="fas fa-check-circle"></i> Stay updated with announcements</li>
+                </ul>
+            </div>
+            <p class="login-copyright">© 2026 St Paul Methodist School Timor-Leste</p>
+        </div>
+
+        <!-- Right: Login Form -->
+        <div class="login-right">
+            <div class="login-box">
+                <div class="login-box-header">
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to access your portal</p>
+                </div>
+
+                <!-- Portal Selector -->
+                <div class="login-portal-selector" role="tablist">
+                    <button type="button" class="portal-tab active" data-portal="student" role="tab">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Student</span>
+                    </button>
+                    <button type="button" class="portal-tab" data-portal="parent" role="tab">
+                        <i class="fas fa-user-friends"></i>
+                        <span>Parent</span>
+                    </button>
+                    <button type="button" class="portal-tab" data-portal="teacher" role="tab">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span>Teacher</span>
+                    </button>
+                </div>
+
+                <!-- Form -->
+                <form class="login-form" id="loginForm" autocomplete="on">
+                    <div class="form-group">
+                        <label for="loginUser">Student ID / Email</label>
+                        <input type="text" id="loginUser" name="username" required placeholder="Enter your student ID or email" autocomplete="username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPass">Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="loginPass" name="password" required placeholder="Enter your password" autocomplete="current-password">
+                            <button type="button" class="toggle-password" id="togglePassword" aria-label="Toggle password visibility">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="login-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="rememberMe">
+                            <span>Remember Me</span>
+                        </label>
+                        <a href="#" class="forgot-link" onclick="event.preventDefault(); alert('Please contact the school office to reset your password.');">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block login-btn" id="loginBtn">
+                        <i class="fas fa-sign-in-alt"></i> Sign In as Student
+                    </button>
+                </form>
+
+                <div class="login-prototype-note">
+                    <i class="fas fa-info-circle"></i>
+                    <span><strong>Prototype:</strong> Demo only — enter any ID and password to sign in.</span>
+                </div>
+
+                <p class="login-help">
+                    Need help? Contact us at <strong>[School Email]</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         SIDEBAR
+    ============================================ -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <img src="images/logo.png" alt="SPMSTL Logo" class="sidebar-logo" onerror="this.style.display='none'">
+            <div class="sidebar-brand-text">
+                <span class="brand-main">SPMSTL</span>
+                <span class="brand-sub">School Portal</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <span class="nav-section-title">Main Menu</span>
+            <a href="#dashboard" class="nav-link active" data-section="dashboard" data-title="Dashboard">
+                <i class="fas fa-th-large"></i><span>Dashboard</span>
+            </a>
+            <a href="#about" class="nav-link" data-section="about" data-title="About Us">
+                <i class="fas fa-info-circle"></i><span>About Us</span>
+            </a>
+            <a href="#academics" class="nav-link" data-section="academics" data-title="Academics">
+                <i class="fas fa-graduation-cap"></i><span>Academics</span>
+            </a>
+            <a href="#admissions" class="nav-link" data-section="admissions" data-title="Admissions">
+                <i class="fas fa-user-plus"></i><span>Admissions</span>
+            </a>
+
+            <span class="nav-section-title">Community</span>
+            <a href="#news" class="nav-link" data-section="news" data-title="News & Announcements">
+                <i class="fas fa-newspaper"></i><span>News</span>
+                <span class="nav-badge">3</span>
+            </a>
+            <a href="#events" class="nav-link" data-section="events" data-title="School Events">
+                <i class="fas fa-calendar-alt"></i><span>Events</span>
+            </a>
+            <a href="#student-life" class="nav-link" data-section="student-life" data-title="Student Life">
+                <i class="fas fa-users"></i><span>Student Life</span>
+            </a>
+            <a href="#gallery" class="nav-link" data-section="gallery" data-title="Gallery">
+                <i class="fas fa-images"></i><span>Gallery</span>
+            </a>
+
+            <span class="nav-section-title">School</span>
+            <a href="#faculty" class="nav-link" data-section="faculty" data-title="Faculty & Staff">
+                <i class="fas fa-chalkboard-teacher"></i><span>Faculty</span>
+            </a>
+            <a href="#contact" class="nav-link" data-section="contact" data-title="Contact Us">
+                <i class="fas fa-envelope"></i><span>Contact</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="logout-btn" id="logoutBtn" type="button">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Sign Out</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================================
+         MAIN WRAPPER
+    ============================================ -->
+    <div class="main-wrapper" id="mainWrapper">
+
+        <!-- Top Header -->
+        <header class="top-header">
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="header-title">
+                <h1 id="pageTitle">Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <div class="header-user">
+                    <div class="header-avatar" id="headerAvatar">JS</div>
+                    <div class="header-user-info">
+                        <span class="header-user-name" id="headerUserName">John Student</span>
+                        <span class="header-user-role" id="headerUserRole">Student</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <main class="content">
+
+            <!-- SECTION: DASHBOARD -->
+            <section id="dashboard" class="page-section active">
+                <div class="welcome-banner">
+                    <div class="welcome-text">
+                        <h2>Welcome to <span>St Paul Methodist School</span></h2>
+                        <p>Empowering Students for a Brighter Future</p>
+                    </div>
+                    <div class="welcome-cta">
+                        <a href="#about" class="btn btn-primary" data-goto="about">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-user-graduate"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">[Number]</span>
+                            <span class="stat-label">Students</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon gold"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">[Number]</span>
+                            <span class="stat-label">Teachers</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i class="fas fa-school"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">SD - SMA</span>
+                            <span class="stat-label">Grade Levels</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon red"><i class="fas fa-award"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">[Year]</span>
+                            <span class="stat-label">Founded</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="dash-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-star"></i> School Highlights</h3>
+                        </div>
+                        <div class="highlight-list">
+                            <div class="highlight-item">
+                                <div class="highlight-icon"><i class="fas fa-graduation-cap"></i></div>
+                                <div>
+                                    <h4>Quality Education</h4>
+                                    <p>[Add short description of educational quality]</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <div class="highlight-icon"><i class="fas fa-globe-asia"></i></div>
+                                <div>
+                                    <h4>International Community</h4>
+                                    <p>[Add short description of community]</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <div class="highlight-icon"><i class="fas fa-heart"></i></div>
+                                <div>
+                                    <h4>Values-Based Education</h4>
+                                    <p>[Add short description of values]</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dash-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-bullhorn"></i> Latest Announcements</h3>
+                            <a href="#news" class="card-link" data-goto="news">View All</a>
+                        </div>
+                        <div class="announcement-list">
+                            <div class="announcement-row">
+                                <div class="announcement-dot gold"></div>
+                                <div class="announcement-body">
+                                    <span class="announcement-title">[Announcement Title]</span>
+                                    <span class="announcement-meta">[Date]</span>
+                                </div>
+                            </div>
+                            <div class="announcement-row">
+                                <div class="announcement-dot blue"></div>
+                                <div class="announcement-body">
+                                    <span class="announcement-title">[Announcement Title]</span>
+                                    <span class="announcement-meta">[Date]</span>
+                                </div>
+                            </div>
+                            <div class="announcement-row">
+                                <div class="announcement-dot green"></div>
+                                <div class="announcement-body">
+                                    <span class="announcement-title">[Announcement Title]</span>
+                                    <span class="announcement-meta">[Date]</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dash-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-calendar-check"></i> Upcoming Events</h3>
+                        <a href="#events" class="card-link" data-goto="events">View All</a>
+                    </div>
+                    <div class="event-grid">
+                        <div class="event-row">
+                            <div class="event-date-box"><span class="event-day">[Day]</span><span class="event-month">[Month]</span></div>
+                            <div class="event-info">
+                                <span class="event-title">[Event Name]</span>
+                                <span class="event-meta"><i class="fas fa-map-marker-alt"></i> [Location]</span>
+                            </div>
+                        </div>
+                        <div class="event-row">
+                            <div class="event-date-box"><span class="event-day">[Day]</span><span class="event-month">[Month]</span></div>
+                            <div class="event-info">
+                                <span class="event-title">[Event Name]</span>
+                                <span class="event-meta"><i class="fas fa-map-marker-alt"></i> [Location]</span>
+                            </div>
+                        </div>
+                        <div class="event-row">
+                            <div class="event-date-box"><span class="event-day">[Day]</span><span class="event-month">[Month]</span></div>
+                            <div class="event-info">
+                                <span class="event-title">[Event Name]</span>
+                                <span class="event-meta"><i class="fas fa-map-marker-alt"></i> [Location]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dash-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-link"></i> Quick Navigation</h3>
+                    </div>
+                    <div class="quick-links">
+                        <a href="#academics" class="quick-link" data-goto="academics"><i class="fas fa-graduation-cap"></i><span>Academics</span></a>
+                        <a href="#admissions" class="quick-link" data-goto="admissions"><i class="fas fa-user-plus"></i><span>Admissions</span></a>
+                        <a href="#gallery" class="quick-link" data-goto="gallery"><i class="fas fa-images"></i><span>Gallery</span></a>
+                        <a href="#faculty" class="quick-link" data-goto="faculty"><i class="fas fa-chalkboard-teacher"></i><span>Faculty</span></a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: ABOUT -->
+            <section id="about" class="page-section">
+                <div class="section-header">
+                    <span class="section-tag">About Us</span>
+                    <h2>School Overview</h2>
+                </div>
+
+                <div class="grid-2">
+                    <div class="dash-card">
+                        <h3 class="card-title">Who We Are</h3>
+                        <p>[Add school overview text here]</p>
+                        <p>[Add more detailed information about the school's history, founding, and mission.]</p>
+                    </div>
+                    <div class="dash-card">
+                        <h3 class="card-title">Our Vision</h3>
+                        <p>[Add vision statement here]</p>
+                        <h3 class="card-title" style="margin-top: 20px;">Our Mission</h3>
+                        <p>[Add mission statement here]</p>
+                    </div>
+                </div>
+
+                <div class="dash-card">
+                    <div class="card-header"><h3><i class="fas fa-heart"></i> Core Values</h3></div>
+                    <div class="values-grid">
+                        <div class="value-item"><i class="fas fa-cross"></i><h4>Faith</h4><p>[Add description]</p></div>
+                        <div class="value-item"><i class="fas fa-star"></i><h4>Excellence</h4><p>[Add description]</p></div>
+                        <div class="value-item"><i class="fas fa-handshake"></i><h4>Integrity</h4><p>[Add description]</p></div>
+                        <div class="value-item"><i class="fas fa-users"></i><h4>Community</h4><p>[Add description]</p></div>
+                    </div>
+                </div>
+
+                <div class="dash-card">
+                    <div class="card-header"><h3><i class="fas fa-user-tie"></i> School Leadership</h3></div>
+                    <div class="leader-grid">
+                        <div class="leader-card">
+                            <div class="leader-avatar">[PN]</div>
+                            <h4>[Principal Name]</h4>
+                            <span>School Principal</span>
+                            <p>[Add principal biography]</p>
+                        </div>
+                        <div class="leader-card">
+                            <div class="leader-avatar">[VN]</div>
+                            <h4>[Vice Principal Name]</h4>
+                            <span>Vice Principal</span>
+                            <p>[Add vice principal biography]</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: ACADEMICS -->
+            <section id="academics" class="page-section">
+                <div class="section-header">
+                    <span class="section-tag">Academics</span>
+                    <h2>Our Academic Programs</h2>
+                </div>
+
+                <div class="grid-3">
+                    <div class="dash-card program-card">
+                        <div class="program-icon"><i class="fas fa-child"></i></div>
+                        <h3>Elementary School (SD)</h3>
+                        <p class="program-age">Grades 1 - 6</p>
+                        <p>[Add description of Elementary School program]</p>
+                        <ul class="program-list">
+                            <li><i class="fas fa-check"></i> [Subject 1]</li>
+                            <li><i class="fas fa-check"></i> [Subject 2]</li>
+                            <li><i class="fas fa-check"></i> [Subject 3]</li>
+                        </ul>
+                    </div>
+                    <div class="dash-card program-card">
+                        <div class="program-icon"><i class="fas fa-book-open"></i></div>
+                        <h3>Junior High School (SMP)</h3>
+                        <p class="program-age">Grades 7 - 9</p>
+                        <p>[Add description of Junior High School program]</p>
+                        <ul class="program-list">
+                            <li><i class="fas fa-check"></i> [Subject 1]</li>
+                            <li><i class="fas fa-check"></i> [Subject 2]</li>
+                            <li><i class="fas fa-check"></i> [Subject 3]</li>
+                        </ul>
+                    </div>
+                    <div class="dash-card program-card">
+                        <div class="program-icon"><i class="fas fa-user-graduate"></i></div>
+                        <h3>Senior High School (SMA)</h3>
+                        <p class="program-age">Grades 10 - 12</p>
+                        <p>[Add description of Senior High School program]</p>
+                        <ul class="program-list">
+                            <li><i class="fas fa-check"></i> [Subject 1]</li>
+                            <li><i class="fas fa-check"></i> [Subject 2]</li>
+                            <li><i class="fas fa-check"></i> [Subject 3]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dash-card">
+                    <div class="card-header"><h3><i class="fas fa-book"></i> Curriculum</h3></div>
+                    <div class="grid-2">
+                        <div>
+                            <h4 class="sub-title">Core Subjects</h4>
+                            <ul class="simple-list">
+                                <li>English Language Arts</li>
+                                <li>Mathematics</li>
+                                <li>Science</li>
+                                <li>Social Studies</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="sub-title">Enrichment</h4>
+                            <ul class="simple-list">
+                                <li>Visual Arts</li>
+                                <li>Music & Drama</li>
+                                <li>Physical Education</li>
+                                <li>Languages (Portuguese, Tetum)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="note-box"><i class="fas fa-info-circle"></i> [Add official curriculum information here]</p>
+                </div>
+            </section>
+
+            <!-- SECTION: ADMISSIONS -->
+            <section id="admissions" class="page-section">
+                <div class="section-header">
+                    <span class="section-tag">Admissions</span>
+                    <h2>Join Our School</h2>
+                </div>
+
+                <div class="dash-card">
+                    <div class="card-header"><h3><i class="fas fa-route"></i> Admission Process</h3></div>
+                    <div class="steps-grid">
+                        <div class="step-item"><div class="step-num">1</div><h4>Submit Inquiry</h4><p>[Add description]</p></div>
+                        <div class="step-item"><div class="step-num">2</div><h4>Application</h4><p>[Add description]</p></div>
+                        <div class="step-item"><div class="step-num">3</div><h4>Document Review</h4><p>[Add description]</p></div>
+                        <div class="step-item"><div class="step-num">4</div><h4>Interview</h4><p>[Add description]</p></div>
+                        <div class="step-item"><div class="step-num">5</div><h4>Admission Decision</h4><p>[Add description]</p></div>
+                        <div class="step-item"><div class="step-num">6</div><h4>Enrollment</h4><p>[Add description]</p></div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="dash-card">
+                        <div class="card-header"><h3><i class="fas fa-file-alt"></i> Requirements</h3></div>
+                        <ul class="simple-list">
+                            <li><i class="fas fa-check"></i> Application Form</li>
+                            <li><i class="fas fa-check"></i> Birth Certificate</li>
+                            <li><i class="fas fa-check"></i> ID / Passport</li>
+                            <li><i class="fas fa-check"></i> Academic Records</li>
+                            <li><i class="fas fa-check"></i> Health Records</li>
+                        </ul>
+                    </div>
+                    <div class="dash-card">
+                        <div class="card-header"><h3><i class="fas fa-calendar"></i> Important Dates</h3></div>
+                        <ul class="date-list">
+                            <li><span>[Month Day]</span> [Event Name]</li>
+                            <li><span>[Month Day]</span> [Event Name]</li>
+                            <li><span>[Month Day]</span> [Event Name]</li>
+                            <li><span>[Month Day]</span> [Event Name]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dash-card">
+                    <div class="card-header"><h3><i class="fas fa-money-bill-wave"></i> Tuition Information</h3></div>
+                    <p class="text-center muted">[Add tuition information here]</p>
+                    <div class="text-center mt-20">
+                        <a href="#contact" class="btn btn-primary" data-goto="contact">Contact Admissions</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: NEWS -->
+            <section id="news" class="page-section">
+                <div class="section-header">
+                    <span class="section-tag">News</span>
+                    <h2>News & Announcements</h2>
+                </div>
+
+                <div class="news-grid">
+                    <article class="news-card">
+                        <div class="news-image"><i class="fas fa-newspaper"></i></div>
+                        <div class="news-body">
+                            <span class="news-cat">Announcements</span>
+                            <h3>[News Title Here]</h3>
+                            <p class="news-meta"><i class="fas fa-calendar"></i> [Date]</p>
+                            <p>[Short description of the news.]</p>
+                            <a href="#" class="card-link">Read More →</a>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <div class="news-image"><i class="fas fa-newspaper"></i></div>
+                        <div class="news-body">
+                            <span class="news-cat">Academic</span>
+                            <h3>[News Title Here]</h3>
+                            <p class="news-meta"><i class="fas fa-calendar"></i> [Date]</p>
+                            <p>[Short description of the news.]</p>
+                            <a href="#" class="card-link">Read More →</a>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <div class="news-image"><i class="fas fa-newspaper"></i></div>
+                        <div class="news-body">
+                            <span class="news-cat">Activities</span>
+                            <h3>[News Title Here]</h3>
+                            <p class="news-meta"><i class="fas fa-calendar"></i> [Date]</p>
+                            <p>[Short description of the news.]</p>
+                            <a href="#" class="card-link">Read More →</a>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <div class="news-image"><i class="fas fa-newspaper"></i></div>
+                        <div class="news-body">
+                            <span class="news-cat">Events</span>
+                            <h3>[News Title Here]</h3>
+                            <p class="news-meta"><i class="fas fa-calendar"></i> [Date]</p>
+                            <p>[Short description of the news.]</p>
+                            <a href="#" class="card-link">Read More →</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- SECTION: EVENTS -->
+            <section id="events" class="page-section">
+                <div class="section-header">
+                    <span class="section-tag">Events</span>
+                    <h2>Upcoming School Events</h2>
+                </div>
+
+                <div class="event-cards-grid">
+                    <div class="dash-card event-card">
+                        <div class="event-date-large">
+                            <span class="event-day">[Day]</span>
+                            <span class="event-month">[Month]</span>
+                            <span class="event-year">[Year]</span>
+                        </div>
+                        <div class="event-detail">
+                            <h3>[Event Name]</h3>
+                            <p><i class="fas fa-clock"></i> [Time]</p>
+                            <p><i class="fas fa-map-marker-alt"></i> [Location]</p>
+                            <p>[Add description]</p>
+                        </div>
+                    </div>
+                    <div class="dash-card event-card">
+                        <div class="event-date-large">
+                            <span class="event-day">[Day]</span>
+                            <span class="event-month">[Month]</span>
+                            <span class="event-year">[Year]</span>
+                        </div>
+                        <div class="event-detail">
+                            <h3>[Event Name]</h3>
+                            <p><i class="fas fa-clock"></i> [Time]</p>
+                            <p><i class="fas fa-map-marker-alt"></i> [Location]</p>
+                            <p>[Add description]</p>
+                        </div>
+                    </div>
+                    <div class="dash-card event-card">
+                        <div class="event-date-large">
+                            <span class="event-day">[Day]</span>
+                            <span class="event-month">[Month]</span>
+                            <span class="event-year">[Year]</span>
+                        </div>
+                        <div class="event-detail">
+                            <h3>[Event Name]</h3>
+                            <p><i class="fas fa-clock"></i> [Time]</p>
+                            <p><i class="fas fa-map-marker-alt"></i> [Location]</p>
+                            <p>[Add description]</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: STUDENT LIFE -->
+            <section id="student-life" class="page-section">
+                <div class="section-header">
+                    <span class="section-tag">Student Life</span>
+                    <h2>Beyond the Classroom</h2>
+                </div>
+
+                <div class="grid-3">
+                    <div class="dash-card">
+                        <div class="program-icon"><i class="fas fa-palette"></i></div>
+                        <h3>Clubs & Activities</h3>
+                        <p>[Add description of clubs and activities]</p>
+                        <ul class="simple-list">
+                            <li>Science Club</li>
+                            <li>Art Club</li>
+                            <li>Music Club</li>
+                        </ul>
+                    </div>
+                    <div class="dash-card">
+                        <div class="program-icon"><i class="fas fa-futbol"></i></div>
+                        <h3>Sports Programs</h3>
+                        <p>[Add description of sports programs]</p>
+                        <ul class="simple-list">
+                            <li>Football</li>
+                            <li>Basketball</li>
+                            <li>Athletics</li>
+                        </ul>
+                    </div>
+                    <div class="dash-card">
+                        <div class="program-icon"><i class="fas fa-hands-helping"></i></div>
+                        <h3>Community Service</h3>
+                        <p>[Add description of community service]</p>
+                        <ul class="simple-list">
+                            <li>Environmental Programs</li>
+                            <li>Social Outreach</li>
+                            <li>Leadership Training</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: GALLERY -->
+            <section id="gallery" class="page-section">
+                <div class="section-header">
+                    <span class="section-tag">Gallery</span>
+                    <h2>Photo Gallery</h2>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item"><i class="fas fa-image"></i><span>[Photo 1]</span></div>
+                    <div class="gallery-item"><i class="fas fa-image"></i><span>[Photo 2]</span></div>
+                    <div class="gallery-item"><i class="fas fa-image"></i><span>[Photo 3]</span></div>
+                    <div class="gallery-item"><i class="fas fa-image"></i><span>[Photo 4]</span></div>
+                    <div class="gallery-item"><i class="fas fa-image"></i><span>[Photo 5]</span></div>
+                    <div class="gallery-item"><i class="fas fa-image"></i><span>[Photo 6]</span></div>
+                    <div class="gallery-item"><i class="fas fa-image"></i><span>[Photo 7]</span></div>
+                    <div class="gallery-item"><i class="fas fa-image"></i><span>[Photo 8]</span></div>
+                </div>
+            </section>
+
+            <!-- SECTION: FACULTY -->
+            <section id="faculty" class="page-section">
+                <div class="section-header">
+                    <span class="section-tag">Faculty</span>
+                    <h2>Faculty & Staff</h2>
+                </div>
+
+                <div class="faculty-grid">
+                    <div class="dash-card faculty-card">
+                        <div class="faculty-avatar">[IN]</div>
+                        <h4>[Faculty Name]</h4>
+                        <span class="faculty-role">[Position]</span>
+                        <p>[Short biography]</p>
+                    </div>
+                    <div class="dash-card faculty-card">
+                        <div class="faculty-avatar">[IN]</div>
+                        <h4>[Faculty Name]</h4>
+                        <span class="faculty-role">[Position]</span>
+                        <p>[Short biography]</p>
+                    </div>
+                    <div class="dash-card faculty-card">
+                        <div class="faculty-avatar">[IN]</div>
+                        <h4>[Faculty Name]</h4>
+                        <span class="faculty-role">[Position]</span>
+                        <p>[Short biography]</p>
+                    </div>
+                    <div class="dash-card faculty-card">
+                        <div class="faculty-avatar">[IN]</div>
+                        <h4>[Faculty Name]</h4>
+                        <span class="faculty-role">[Position]</span>
+                        <p>[Short biography]</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: CONTACT -->
+            <section id="contact" class="page-section">
+                <div class="section-header">
+                    <span class="section-tag">Contact</span>
+                    <h2>Get in Touch</h2>
+                </div>
+
+                <div class="grid-2">
+                    <div class="dash-card">
+                        <div class="card-header"><h3><i class="fas fa-address-book"></i> Contact Information</h3></div>
+                        <ul class="contact-info-list">
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div><strong>Address</strong><span>[School Address]</span></div>
+                            </li>
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <div><strong>Phone</strong><span>[School Phone]</span></div>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <div><strong>Email</strong><span>[School Email]</span></div>
+                            </li>
+                            <li>
+                                <i class="fas fa-clock"></i>
+                                <div><strong>Office Hours</strong><span>Mon-Fri: 8:00 AM - 4:00 PM</span></div>
+                            </li>
+                        </ul>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="dash-card">
+                        <div class="card-header"><h3><i class="fas fa-paper-plane"></i> Send Us a Message</h3></div>
+                        <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('.form-msg').style.display='block'; this.reset();">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" required placeholder="Enter your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" required placeholder="Enter your email">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" rows="4" required placeholder="Write your message..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                            <p class="form-msg" style="display:none; color: #27ae60; font-weight: 500; margin-top: 12px; text-align: center;">
+                                ✓ Message sent (prototype only)
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="dash-card">
+                    <div class="map-placeholder">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <p><strong>Map Placeholder</strong></p>
+                        <p>Replace this with Google Maps embed</p>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="page-footer">
+                <p>© 2026 St Paul Methodist School Timor-Leste. All Rights Reserved.</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ============================================
+         INLINE JS
+    ============================================ -->
+    <script>
+        (function() {
+            const body          = document.body;
+            const loginForm     = document.getElementById('loginForm');
+            const loginUser     = document.getElementById('loginUser');
+            const loginPass     = document.getElementById('loginPass');
+            const loginBtn      = document.getElementById('loginBtn');
+            const rememberMe    = document.getElementById('rememberMe');
+            const togglePass    = document.getElementById('togglePassword');
+            const portalTabs    = document.querySelectorAll('.portal-tab');
+            const logoutBtn     = document.getElementById('logoutBtn');
+            const sidebar       = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebarOverlay= document.getElementById('sidebarOverlay');
+            const pageTitle     = document.getElementById('pageTitle');
+            const navLinks      = document.querySelectorAll('.nav-link');
+            const sections      = document.querySelectorAll('.page-section');
+            const headerUserName= document.getElementById('headerUserName');
+            const headerUserRole= document.getElementById('headerUserRole');
+            const headerAvatar  = document.getElementById('headerAvatar');
+
+            /* ---------- AUTH HELPERS ---------- */
+            function getStoredUser() {
+                try {
+                    const remember = localStorage.getItem('spmstl_user');
+                    if (remember) return JSON.parse(remember);
+                    const session = sessionStorage.getItem('spmstl_user');
+                    if (session) return JSON.parse(session);
+                } catch(e) { /* ignore */ }
+                return null;
+            }
+
+            function getInitials(name) {
+                if (!name) return '?';
+                const base = name.split('@')[0];
+                const parts = base.split(/[\s._-]+/).filter(Boolean);
+                if (parts.length === 0) return '?';
+                if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
+                return (parts[0].charAt(0) + parts[1].charAt(0)).toUpperCase();
+            }
+
+            function setUserUI(user, portal) {
+                if (headerUserName) headerUserName.textContent = user;
+                if (headerUserRole) headerUserRole.textContent = portal.charAt(0).toUpperCase() + portal.slice(1);
+                if (headerAvatar)   headerAvatar.textContent   = getInitials(user);
+            }
+
+            function applyAuthState() {
+                const user = getStoredUser();
+                if (user) {
+                    body.classList.add('logged-in');
+                    setUserUI(user.user, user.portal || 'student');
+                } else {
+                    body.classList.remove('logged-in');
+                }
+            }
+
+            /* ---------- SECTION NAV ---------- */
+            function showSection(id, title) {
+                sections.forEach(s => s.classList.remove('active'));
+                const target = document.getElementById(id);
+                if (target) target.classList.add('active');
+
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.dataset.section === id);
+                });
+
+                if (pageTitle && title) pageTitle.textContent = title;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                if (window.innerWidth <= 900) {
+                    sidebar.classList.remove('open');
+                    sidebarOverlay.classList.remove('show');
+                }
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const id = this.dataset.section;
+                    const title = this.dataset.title || this.textContent.trim();
+                    showSection(id, title);
+                    history.replaceState(null, '', '#' + id);
+                });
+            });
+
+            document.querySelectorAll('[data-goto]').forEach(el => {
+                el.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const id = this.dataset.goto;
+                    const titleEl = document.querySelector(`.nav-link[data-section="${id}"]`);
+                    const title = titleEl ? (titleEl.dataset.title || titleEl.textContent.trim()) : id;
+                    showSection(id, title);
+                    history.replaceState(null, '', '#' + id);
+                });
+            });
+
+            /* ---------- SIDEBAR TOGGLE ---------- */
+            sidebarToggle && sidebarToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+                sidebarOverlay.classList.toggle('show');
+            });
+            sidebarOverlay && sidebarOverlay.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                sidebarOverlay.classList.remove('show');
+            });
+
+            /* ---------- PASSWORD VISIBILITY ---------- */
+            togglePass && togglePass.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (loginPass.type === 'password') {
+                    loginPass.type = 'text';
+                    icon.className = 'fas fa-eye-slash';
+                } else {
+                    loginPass.type = 'password';
+                    icon.className = 'fas fa-eye';
+                }
+            });
+
+            /* ---------- PORTAL TABS ---------- */
+            portalTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    portalTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    const portal = this.dataset.portal;
+                    const placeholders = {
+                        student: 'Enter your student ID or email',
+                        parent:  'Enter your parent email',
+                        teacher: 'Enter your teacher email'
+                    };
+                    loginUser.placeholder = placeholders[portal] || 'Enter your ID or email';
+                    loginBtn.innerHTML = `<i class="fas fa-sign-in-alt"></i> Sign In as ${portal.charAt(0).toUpperCase() + portal.slice(1)}`;
+                });
+            });
+
+            /* ---------- LOGIN ---------- */
+            loginForm && loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const userVal = loginUser.value.trim();
+                const passVal = loginPass.value;
+                const remember = rememberMe.checked;
+                const activeTab = document.querySelector('.portal-tab.active');
+                const portal = activeTab ? activeTab.dataset.portal : 'student';
+
+                if (!userVal || !passVal) return;
+
+                const originalHTML = loginBtn.innerHTML;
+                loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in...';
+                loginBtn.disabled = true;
+
+                setTimeout(() => {
+                    const userData = { user: userVal, portal, ts: Date.now() };
+                    try {
+                        if (remember) {
+                            localStorage.setItem('spmstl_user', JSON.stringify(userData));
+                            sessionStorage.removeItem('spmstl_user');
+                        } else {
+                            sessionStorage.setItem('spmstl_user', JSON.stringify(userData));
+                            localStorage.removeItem('spmstl_user');
+                        }
+                    } catch(err) { /* storage might be blocked */ }
+
+                    setUserUI(userVal, portal);
+                    body.classList.add('logged-in');
+                    loginForm.reset();
+                    loginBtn.innerHTML = originalHTML;
+                    loginBtn.disabled = false;
+
+                    // Reset to dashboard
+                    showSection('dashboard', 'Dashboard');
+                    history.replaceState(null, '', '#dashboard');
+                }, 700);
+            });
+
+            /* ---------- LOGOUT ---------- */
+            logoutBtn && logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                try {
+                    localStorage.removeItem('spmstl_user');
+                    sessionStorage.removeItem('spmstl_user');
+                } catch(err) {}
+                body.classList.remove('logged-in');
+                // Reset UI
+                if (headerUserName) headerUserName.textContent = 'Guest';
+                if (headerUserRole) headerUserRole.textContent = '—';
+                if (headerAvatar)   headerAvatar.textContent   = '?';
+                // Reset section
+                showSection('dashboard', 'Dashboard');
+                history.replaceState(null, '', '#');
+            });
+
+            /* ---------- INIT ---------- */
+            applyAuthState();
+
+            window.addEventListener('DOMContentLoaded', function() {
+                const hash = window.location.hash.replace('#', '');
+                if (hash && body.classList.contains('logged-in')) {
+                    const titleEl = document.querySelector(`.nav-link[data-section="${hash}"]`);
+                    const title = titleEl ? (titleEl.dataset.title || titleEl.textContent.trim()) : hash;
+                    showSection(hash, title);
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
